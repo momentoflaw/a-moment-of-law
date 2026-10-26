@@ -2,17 +2,30 @@
 
 Usage: python tools/produce.py episodes/<name> <out_dir> [--mock]
 
-The script file has one turn per line, "<speaker>: <text>", where <speaker> is a
-key of "speakers" in podcast.json. Turns are grouped into requests of at most
-tts.max_words_per_request words (never splitting a turn), each request is sent
-to the Interactions API, and the WAV parts are joined and mastered to MP3.
---mock replaces the API with silent placeholder audio, for local testing.
+The script file has one turn per line: "<speaker>: <text>" or
+"<speaker> [<delivery style>]: <text>", where <speaker> is a key of "speakers"
+in podcast.json and the optional bracket overrides that speaker's default style
+for this turn only. Inline vocal tags such as <laugh> or <short pause> pass
+through to the model. meta.json may override voices with
+"voices": {"<speaker>": "<voice name>"}.
+
+Turns are grouped into requests of at most tts.max_words_per_request words
+(never splitting a turn), each request goes to the Interactions API, and the
+WAV parts are joined and mastered to MP3.
+--mock replaces the API with placeholder audio, for local testing.
 """
 import base64, json, pathlib, re, subprocess, sys, tempfile, time
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 CFG = json.loads((ROOT / "podcast.json").read_text(encoding="utf-8"))
 TTS = CFG["tts"]
+LINE = re.compile(r"^(\S+?)(?:\s*\[([^\]]*)\])?:\s+(.+)$")
+NO_RETRY = ("INVALID_ARGUMENT", "PERMISSION_DENIED", "API key", "Missing key",
+            " 400", " 401", " 403", " 404")
+
+
+def words(text):
+    return len(re.sub(r"<[^>]+>", " ", text).split())
 
 
 def parse_script(path):
@@ -21,30 +34,32 @@ def parse_script(path):
         line = raw.strip()
         if not line:
             continue
-        m = re.match(r"^(\S+?):\s+(.+)$", line)
+        m = LINE.match(line)
         if not m or m.group(1) not in CFG["speakers"]:
-            sys.exit(f"{path}:{n}: expected '<speaker>: text' with a known speaker: {line[:60]}")
-        turns.append((m.group(1), m.group(2)))
+            sys.exit(f"{path}:{n}: expected '<speaker> [style]: text' with a known speaker: {line[:60]}")
+        turns.append((m.group(1), (m.group(2) or "").strip() or None, m.group(3)))
     if not turns:
         sys.exit(f"{path}: empty script")
     return turns
 
 
 def chunk(turns):
-    chunks, cur, words = [], [], 0
-    for speaker, text in turns:
-        w = len(text.split())
-        if cur and words + w > TTS["max_words_per_request"]:
+    chunks, cur, count = [], [], 0
+    for turn in turns:
+        w = words(turn[2])
+        if cur and count + w > TTS["max_words_per_request"]:
             chunks.append(cur)
-            cur, words = [], 0
-        cur.append((speaker, text))
-        words += w
+            cur, count = [], 0
+        cur.append(turn)
+        count += w
     if cur:
         chunks.append(cur)
     return chunks
 
 
-def request_audio(turns):
+def request_audio(turns, voices, full=True):
+    """One Interactions API call. full=False drops optional speech settings
+    (conversational mode, language) in case the API rejects them."""
     from google import genai  # imported here so --mock runs without the SDK
     client = genai.Client()  # reads GEMINI_API_KEY from the environment
     content = [{
@@ -53,16 +68,24 @@ def request_audio(turns):
         "annotations": [{
             "type": "speech_metadata",
             "speaker": CFG["speakers"][speaker]["id"],
-            "style": CFG["speakers"][speaker]["style"],
+            "style": style or CFG["speakers"][speaker]["style"],
         }],
-    } for speaker, text in turns]
+    } for speaker, style, text in turns]
+    speakers = []
+    for key, s in CFG["speakers"].items():
+        entry = {"speaker": s["id"], "voice": voices[key]}
+        if full and TTS.get("language"):
+            entry["language"] = TTS["language"]
+        speakers.append(entry)
+    speech_config = {"speakers": speakers}
+    if full and TTS.get("conversational_mode"):
+        speech_config["mode"] = "conversational"
     interaction = client.interactions.create(
         model=TTS["model"],
         input=[{"type": "user_input", "content": content}],
         response_format={"type": "audio"},
-        generation_config={"speech_config": {"speakers": [
-            {"speaker": s["id"], "voice": s["voice"]} for s in CFG["speakers"].values()
-        ]}},
+        # sent as raw JSON so REST-only fields such as "mode" reach the API
+        extra_body={"generation_config": {"speech_config": speech_config}},
     )
     audio = getattr(interaction, "output_audio", None)
     if not audio or not audio.data:
@@ -77,26 +100,33 @@ def ff(*args):
         sys.exit(r.stderr[-3000:])
 
 
-def synth(turns, out_wav, mock):
+def synth(turns, voices, out_wav, mock):
     if mock:
-        seconds = max(1, sum(len(t.split()) for _, t in turns) / 2.4)
+        seconds = max(1, sum(words(t) for _, _, t in turns) / 2.4)
         ff("-f", "lavfi", "-i", "sine=frequency=180:sample_rate=24000", "-af", "volume=0.1",
            "-t", f"{seconds:.1f}", out_wav)
         return
-    for attempt in range(1, 7):
+    full = True
+    attempt = 0
+    while True:
+        attempt += 1
         try:
-            data = request_audio(turns)
+            data = request_audio(turns, voices, full)
             break
         except Exception as e:  # noqa: BLE001 - report and decide whether to retry
             msg = str(e)
-            if any(k in msg for k in ("INVALID_ARGUMENT", "PERMISSION_DENIED", "API key", "Missing key",
-                                      " 400", " 401", " 403", " 404")):
+            if any(k in msg for k in NO_RETRY):
+                if full and ("INVALID_ARGUMENT" in msg or " 400" in msg):
+                    print(f"TTS rejected the optional speech settings, retrying without them: {msg[:300]}",
+                          flush=True)
+                    full = False
+                    continue
                 sys.exit(f"TTS request rejected (not retrying): {msg[:1500]}")
+            if attempt >= 6:
+                sys.exit(f"TTS failed after {attempt} attempts: {msg[:500]}")
             wait = min(120, 15 * 2 ** (attempt - 1))
             print(f"TTS attempt {attempt} failed: {msg[:300]} - retrying in {wait}s", flush=True)
             time.sleep(wait)
-    else:
-        sys.exit("TTS failed after 6 attempts")
     if data[:4] == b"RIFF":
         out_wav.write_bytes(data)
     else:  # headerless 24 kHz 16-bit mono PCM
@@ -126,13 +156,15 @@ def master(parts, out_mp3, title):
     lst.write_text("".join(f"file '{s}'\n" for s in seq))
     joined = tmp / "joined.wav"
     ff("-f", "concat", "-safe", 0, "-i", lst, "-c", "copy", joined)
+    tempo = float(TTS.get("tempo", 1.0))
+    pre = f"atempo={tempo}," if abs(tempo - 1.0) > 1e-3 else ""
     r = subprocess.run(["ffmpeg", "-hide_banner", "-i", str(joined), "-af",
-                        "loudnorm=I=-16:TP=-1.5:LRA=11:print_format=json", "-f", "null", "-"],
+                        f"{pre}loudnorm=I=-16:TP=-1.5:LRA=11:print_format=json", "-f", "null", "-"],
                        capture_output=True, text=True)
     m = json.loads(r.stderr[r.stderr.rfind("{"):r.stderr.rfind("}") + 1])
     if m["input_i"] in ("-inf", "inf") or float(m["input_i"]) < -70:
         sys.exit("mastering: the joined audio is silent - check the TTS output")
-    af = ("loudnorm=I=-16:TP=-1.5:LRA=11:linear=true:"
+    af = (f"{pre}loudnorm=I=-16:TP=-1.5:LRA=11:linear=true:"
           f"measured_I={m['input_i']}:measured_TP={m['input_tp']}:measured_LRA={m['input_lra']}:"
           f"measured_thresh={m['input_thresh']}:offset={m['target_offset']}")
     ff("-i", joined, "-af", af, "-ar", 44100, "-ac", 1, "-c:a", "libmp3lame", "-b:a", TTS["mp3_bitrate"],
@@ -144,8 +176,9 @@ def master(parts, out_mp3, title):
 
 
 def notes(meta):
-    lines = [meta["description"], "", "המקורות:"]
-    lines += [f"- {s['title']}: {s['url']}" for s in meta.get("sources", [])]
+    lines = [meta["description"], ""]
+    if meta.get("sources"):
+        lines += ["המקורות:"] + [f"- {s['title']}: {s['url']}" for s in meta["sources"]]
     return "\n".join(lines) + "\n"
 
 
@@ -154,16 +187,18 @@ def main():
     mock = "--mock" in sys.argv
     ep, out_dir = pathlib.Path(args[0]), pathlib.Path(args[1])
     meta = json.loads((ep / "meta.json").read_text(encoding="utf-8"))
+    voices = {k: s["voice"] for k, s in CFG["speakers"].items()}
+    voices.update(meta.get("voices", {}))
     turns = parse_script(ep / "script-tts.txt")
     chunks = chunk(turns)
-    print(f"{ep.name}: {len(turns)} turns, {sum(len(t.split()) for _, t in turns)} words, "
-          f"{len(chunks)} TTS requests", flush=True)
+    print(f"{ep.name}: {len(turns)} turns, {sum(words(t) for _, _, t in turns)} words, "
+          f"{len(chunks)} TTS requests, voices {voices}", flush=True)
     tmp = pathlib.Path(tempfile.mkdtemp())
     wavs = []
     for i, c in enumerate(chunks, 1):
         wav = tmp / f"req{i:02d}.wav"
-        synth(c, wav, mock)
-        print(f"  request {i}/{len(chunks)}: {sum(len(t.split()) for _, t in c)} words -> "
+        synth(c, voices, wav, mock)
+        print(f"  request {i}/{len(chunks)}: {sum(words(t) for _, _, t in c)} words -> "
               f"{duration(wav):.0f}s audio", flush=True)
         wavs.append(wav)
         if not mock and i < len(chunks):

@@ -12,13 +12,13 @@
   "speakers": {
     "עמרי": {
       "id": "Omri",
-      "voice": "Charon",
-      "style": "Dry, deadpan and understated. Calm, serious and slightly weary, like a news anchor reporting a national tragedy about court fees. Never laugh; keep the same flat tone on punchlines. Natural Israeli Hebrew, moderate pace."
+      "voice": "Algieba",
+      "style": "Smooth, warm radio-host voice with energy and a smile, like a seasoned morning-show host. Lively, brisk, natural conversational pace with real reactions to his co-host. Loves pompous legal phrasing and plays it with mock gravity while clearly enjoying the joke. Lands punchlines with comic timing: a tiny beat, then a light, knowing delivery. Natural Israeli Hebrew."
     },
     "מיכל": {
       "id": "Michal",
-      "voice": "Kore",
-      "style": "Dry, deadpan and understated, a touch sharper than her co-host. Calm and serious; never laugh; deliver punchlines flatly after a short beat. Natural Israeli Hebrew, moderate pace."
+      "voice": "Leda",
+      "style": "Young, bright, pleasant and playful co-host. Brisk, natural conversational pace, energetic and warm. Reacts genuinely to her co-host: amused, teasing, sometimes mock-exasperated, laughing lightly when something is funny. Delivers punchlines with a grin and great timing. Natural Israeli Hebrew."
     }
   },
   "tts": {
@@ -26,7 +26,10 @@
     "max_words_per_request": 520,
     "pause_seconds": 20,
     "gap_between_requests_seconds": 0.35,
-    "mp3_bitrate": "96k"
+    "mp3_bitrate": "96k",
+    "conversational_mode": true,
+    "language": "he-IL",
+    "tempo": 1.0
   },
   "script": {
     "max_minutes": 12,
