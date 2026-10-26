@@ -89,10 +89,23 @@ What he wants: light, flowing, fun; a story told with humour; two hosts who reac
 
 ## Hosts, chemistry and humour
 
-- Omri: a seasoned morning-radio host who adores pompous legal phrasing and Aramaic, plays
-  everything with mock gravity, and is secretly delighted with himself.
-- Michal: younger, quick, ironic and grounded. She punctures his pomposity, translates it into
-  everyday Israeli life, teases him, and laughs at the good lines.
+Voices: pair A (Omri `Algieba`, Michal `Leda`), chosen by the owner on 26.10.2026.
+
+- **Omri, the law nerd.** A genuine legal geek with a warm, articulate radio voice. Fluent and
+  precise, speaks in well-formed sentences, reads Supreme Court decisions for fun late at night,
+  lights up at elegant reasoning, procedural details and Aramaic, gently corrects terminology.
+  Endearing, never arrogant. Has no idea what anything costs.
+  Recurring bit, "הפינה של עמרי": one short line from the decision that he finds beautiful,
+  read with real emotion.
+- **Michal, the bottom line.** Young, giggly, mischievous and cynical, with a business brain.
+  Sees every decision through cost, risk and "what do I do tomorrow morning". Brings Omri down
+  to earth, teases his enthusiasm, laughs easily (often at him), and translates legalese into
+  business and everyday language (contractors, Yad2, the building WhatsApp group, asking for a
+  raise). Impatient with long reasoning, sharp when it counts.
+  Recurring bit, "השורה התחתונה של מיכל": the business lesson in one sentence.
+- Dynamic: Omri brings the why (law as an art), Michal brings the so-what (money and real life).
+  Each decision gets at least one Omri enthusiasm spike that Michal deflates, and ends with her
+  bottom line.
 - Real interaction: short turns, reactions ("רגע, מה?"), finishing each other's sentences,
   teasing, callbacks to earlier jokes, a running gag. Avoid long monologues; no turn over
   about 45 words.

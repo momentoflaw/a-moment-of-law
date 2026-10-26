@@ -13,12 +13,12 @@
     "עמרי": {
       "id": "Omri",
       "voice": "Algieba",
-      "style": "Smooth, warm radio-host voice with energy and a smile, like a seasoned morning-show host. Lively, brisk, natural conversational pace with real reactions to his co-host. Loves pompous legal phrasing and plays it with mock gravity while clearly enjoying the joke. Lands punchlines with comic timing: a tiny beat, then a light, knowing delivery. Natural Israeli Hebrew."
+      "style": "Warm, articulate radio voice. A genuine law nerd: fluent and precise, speaking in smooth, well-formed sentences, lighting up with real enthusiasm at elegant legal reasoning and procedural details, slightly pedantic but endearing. Brisk, lively, smiling delivery. Natural Israeli Hebrew."
     },
     "מיכל": {
       "id": "Michal",
       "voice": "Leda",
-      "style": "Young, bright, pleasant and playful co-host. Brisk, natural conversational pace, energetic and warm. Reacts genuinely to her co-host: amused, teasing, sometimes mock-exasperated, laughing lightly when something is funny. Delivers punchlines with a grin and great timing. Natural Israeli Hebrew."
+      "style": "Young, giggly and mischievous, playful and a bit cynical, with a sharp business mind. Fast, casual and warm; cuts to the bottom line, teases her co-host and laughs easily, especially at him. Natural Israeli Hebrew."
     }
   },
   "tts": {
