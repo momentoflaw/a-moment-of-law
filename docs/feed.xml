@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>רגע של משפט</title>
+    <link>https://momentoflaw.github.io/a-moment-of-law/</link>
+    <atom:link href="https://momentoflaw.github.io/a-moment-of-law/feed.xml" rel="self" type="application/rss+xml"/>
+    <language>he</language>
+    <description>פודקאסט יומי על פסיקה אזרחית, מסחרית ודיני ראיות מהיממה האחרונה, בטון יבש וברצינות מופרזת. עמרי ומיכל מביאים כל בוקר שתי החלטות: אחת דיונית או ראייתית ואחת מהותית-מסחרית. הפודקאסט נכתב ומוקלט כולו בידי בינה מלאכותית, ואינו מהווה ייעוץ משפטי.</description>
+    <itunes:author>רגע של משפט</itunes:author>
+    <itunes:owner>
+      <itunes:name>רגע של משפט</itunes:name>
+      <itunes:email>eladmoshmb@gmail.com</itunes:email>
+    </itunes:owner>
+    <itunes:image href="https://momentoflaw.github.io/a-moment-of-law/cover.jpg"/>
+    <itunes:category text="Government"/>
+    <itunes:explicit>false</itunes:explicit>
+    <itunes:type>episodic</itunes:type>
+
+  </channel>
+</rss>
