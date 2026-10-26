@@ -1,0 +1,31 @@
+{
+  "title": "רגע של משפט",
+  "description": "פודקאסט יומי על פסיקה אזרחית, מסחרית ודיני ראיות מהיממה האחרונה, בטון יבש וברצינות מופרזת. עמרי ומיכל מביאים כל בוקר שתי החלטות: אחת דיונית או ראייתית ואחת מהותית-מסחרית. הפודקאסט נכתב ומוקלט כולו בידי בינה מלאכותית, ואינו מהווה ייעוץ משפטי.",
+  "language": "he",
+  "author": "רגע של משפט",
+  "owner_name": "רגע של משפט",
+  "owner_email": "eladmoshmb@gmail.com",
+  "category": "Government",
+  "explicit": false,
+  "file_prefix": "rega-shel-mishpat",
+  "cover_file": "docs/cover.jpg",
+  "speakers": {
+    "עמרי": {
+      "id": "Omri",
+      "voice": "Charon",
+      "style": "Dry, deadpan and understated. Calm, serious and slightly weary, like a news anchor reporting a national tragedy about court fees. Never laugh; keep the same flat tone on punchlines. Natural Israeli Hebrew, moderate pace."
+    },
+    "מיכל": {
+      "id": "Michal",
+      "voice": "Kore",
+      "style": "Dry, deadpan and understated, a touch sharper than her co-host. Calm and serious; never laugh; deliver punchlines flatly after a short beat. Natural Israeli Hebrew, moderate pace."
+    }
+  },
+  "tts": {
+    "model": "gemini-3.8-flash-tts",
+    "max_words_per_request": 520,
+    "pause_seconds": 20,
+    "gap_between_requests_seconds": 0.35,
+    "mp3_bitrate": "96k"
+  }
+}

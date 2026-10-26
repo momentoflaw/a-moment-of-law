@@ -1,0 +1,74 @@
+name: produce-episode
+
+# Runs when a new episode script is pushed (or manually, to re-produce one).
+# For every episodes/<name>/script-tts.txt without a release, it generates the
+# audio with Gemini TTS, masters an MP3, attaches it to release ep-<name>,
+# and rebuilds the podcast feed in docs/feed.xml.
+on:
+  push:
+    branches: [main]
+    paths: ["episodes/**/script-tts.txt", "episodes/**/meta.json"]
+  workflow_dispatch:
+    inputs:
+      episode:
+        description: "Folder name under episodes/ to (re)produce. Leave empty for all pending."
+        required: false
+
+permissions:
+  contents: write
+
+concurrency:
+  group: produce
+  cancel-in-progress: false
+
+jobs:
+  produce:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Install tools
+        run: |
+          command -v ffmpeg >/dev/null || (sudo apt-get update -q && sudo apt-get install -y -q ffmpeg)
+          python3 -m venv .venv
+          .venv/bin/pip install --quiet "google-genai>=2.25.0"
+
+      - name: Produce pending episodes
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          GH_TOKEN: ${{ github.token }}
+          ONLY: ${{ inputs.episode }}
+        run: |
+          set -euo pipefail
+          if [ -z "${GEMINI_API_KEY:-}" ]; then
+            echo "::error::The GEMINI_API_KEY repository secret is missing (Settings > Secrets and variables > Actions)."
+            exit 1
+          fi
+          for dir in episodes/*/; do
+            name=$(basename "$dir")
+            [ -f "$dir/script-tts.txt" ] || continue
+            if [ -n "${ONLY:-}" ] && [ "$name" != "$ONLY" ]; then continue; fi
+            tag="ep-$name"
+            if [ -z "${ONLY:-}" ] && gh release view "$tag" >/dev/null 2>&1; then
+              echo "skip $name (already produced)"; continue
+            fi
+            .venv/bin/python tools/produce.py "$dir" "out/$name"
+            file=$(python3 -c "import json;print(json.load(open('out/$name/episode.json'))['file'])")
+            title=$(python3 -c "import json;print(json.load(open('${dir}meta.json'))['title'])")
+            publish=$(python3 -c "import json;print(str(json.load(open('${dir}meta.json')).get('publish', False)).lower())")
+            pre=""; [ "$publish" = "true" ] || pre="--prerelease"
+            gh release delete "$tag" --yes --cleanup-tag >/dev/null 2>&1 || true
+            gh release create "$tag" "out/$name/$file" --title "$title" --notes-file "out/$name/notes.md" $pre
+            cp "out/$name/episode.json" "${dir}episode.json"
+            echo "### $title" >> "$GITHUB_STEP_SUMMARY"
+            echo "https://github.com/$GITHUB_REPOSITORY/releases/download/$tag/$file" >> "$GITHUB_STEP_SUMMARY"
+          done
+
+      - name: Commit episode info and feed
+        run: |
+          python3 tools/feed.py
+          git config user.name "rega-shel-mishpat-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add episodes docs
+          git diff --cached --quiet || (git commit -q -m "Update episodes and feed [skip ci]" && git push -q)
