@@ -13,12 +13,12 @@
     "עמרי": {
       "id": "Omri",
       "voice": "Algieba",
-      "style": "Warm, articulate radio voice. A genuine law nerd: fluent and precise, speaking in smooth, well-formed sentences, lighting up with real enthusiasm at elegant legal reasoning and procedural details, slightly pedantic but endearing. Brisk, lively, smiling delivery. Natural Israeli Hebrew."
+      "style": "Warm, articulate radio voice of a gentle Jerusalem law nerd: fluent and precise, smooth well-formed sentences, measured until something legal excites him, then he speeds up with childlike enthusiasm. Endearing, a little pedantic, smiling. Brisk, lively delivery. Natural Israeli Hebrew."
     },
     "מיכל": {
       "id": "Michal",
       "voice": "Leda",
-      "style": "Young, giggly and mischievous, playful and a bit cynical, with a sharp business mind. Fast, casual and warm; cuts to the bottom line, teases her co-host and laughs easily, especially at him. Natural Israeli Hebrew."
+      "style": "Young Tel Aviv woman, giggly, mischievous and cynical, with a sharp business mind. Fast, casual, slangy and warm; cuts to the bottom line, teases her co-host and laughs easily, often mid-sentence. Natural Israeli Hebrew."
     }
   },
   "tts": {

@@ -91,6 +91,9 @@ What he wants: light, flowing, fun; a story told with humour; two hosts who reac
 
 Voices: pair A (Omri `Algieba`, Michal `Leda`), chosen by the owner on 26.10.2026.
 
+Full character bible (background, education, culture, habits, catchphrases, running gags):
+`hosts.md`. Read it before writing; use one or two details per episode, never all of them.
+
 - **Omri, the law nerd.** A genuine legal geek with a warm, articulate radio voice. Fluent and
   precise, speaks in well-formed sentences, reads Supreme Court decisions for fun late at night,
   lights up at elegant reasoning, procedural details and Aramaic, gently corrects terminology.
