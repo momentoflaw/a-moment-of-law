@@ -20,6 +20,7 @@ ROOT = pathlib.Path(__file__).resolve().parent.parent
 CFG = json.loads((ROOT / "podcast.json").read_text(encoding="utf-8"))
 TTS = CFG["tts"]
 LINE = re.compile(r"^(\S+?)(?:\s*\[([^\]]*)\])?:\s+(.+)$")
+FALLBACKS = []  # requests that had to drop the optional speech settings
 NO_RETRY = ("INVALID_ARGUMENT", "PERMISSION_DENIED", "API key", "Missing key",
             " 400", " 401", " 403", " 404")
 
@@ -117,9 +118,10 @@ def synth(turns, voices, out_wav, mock):
             msg = str(e)
             if any(k in msg for k in NO_RETRY):
                 if full and ("INVALID_ARGUMENT" in msg or " 400" in msg):
-                    print(f"TTS rejected the optional speech settings, retrying without them: {msg[:300]}",
-                          flush=True)
+                    print(f"::warning::TTS rejected the optional speech settings (conversational mode, "
+                          f"language); retrying without them: {msg[:300]}", flush=True)
                     full = False
+                    FALLBACKS.append(msg[:200])
                     continue
                 sys.exit(f"TTS request rejected (not retrying): {msg[:1500]}")
             if attempt >= 6:
@@ -206,7 +208,8 @@ def main():
     out_dir.mkdir(parents=True, exist_ok=True)
     mp3 = out_dir / f"{CFG['file_prefix']}-{ep.name}.mp3"
     secs = master(wavs, mp3, meta["title"])
-    info = {"file": mp3.name, "bytes": mp3.stat().st_size, "duration_seconds": round(secs)}
+    info = {"file": mp3.name, "bytes": mp3.stat().st_size, "duration_seconds": round(secs),
+            "tts_settings": "minimal" if FALLBACKS else "full", "tempo": TTS.get("tempo", 1.0)}
     (out_dir / "episode.json").write_text(json.dumps(info, ensure_ascii=False, indent=2), encoding="utf-8")
     (out_dir / "notes.md").write_text(notes(meta), encoding="utf-8")
     print(f"done: {mp3.name}, {secs / 60:.1f} min, {info['bytes'] / 1e6:.1f} MB", flush=True)
