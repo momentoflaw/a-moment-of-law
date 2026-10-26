@@ -47,6 +47,9 @@ What he wants: light, flowing, fun; a story told with humour; two hosts who reac
    episodes must not exceed 12 minutes. Shorter and punchier is better than complete.
    Before writing, check the show's memory in `continuity.md` (see "Show memory" below): read
    the last five entries, and grep the rest for today's case numbers, parties and topics.
+   Also check, with one web search of that day's Hebrew sports news, whether Maccabi Tel Aviv's
+   football team (not basketball) had a notable win or won a title in the last day or two (see
+   Michal below).
 5. **Write `script-tts.txt`**: the same turns, with delivery directions (rules below).
 6. **Write `meta.json`**: `title`, `date`, `publish` (false unless the owner said to publish),
    `description` (one paragraph, ending with the AI and not-legal-advice disclaimer), and
@@ -58,6 +61,7 @@ What he wants: light, flowing, fun; a story told with humour; two hosts who reac
      party allegation presented as a finding.
    - Both decisions include the mandatory spoken elements.
    - Any callback to an earlier episode matches its `continuity.md` entry.
+   - Any sports fact (opponent, score, competition, scorers, title) matches that day's news.
    - Funny enough? Each decision has at least three real jokes, and the hosts react to each
      other rather than taking turns reading. If not, rewrite before pushing.
    - Word count ≤ 1,400; every line starts with `עמרי` or `מיכל`; `script.txt` has no
@@ -110,6 +114,8 @@ recurring segments.
 - **Michal, the bottom line.** Young, giggly, mischievous and cynical, with a business brain.
   She studied law and knows commercial law well, but on principle never sat the bar exam; she is
   by-the-book with money and sharp on investments (for metaphors, never investment advice).
+  A die-hard Maccabi Tel Aviv football fan: the day after a notable or unusual win, or a title,
+  she brings it up briefly, usually in the cold open, with verified facts only.
   Sees every decision through cost, risk and "what do I do tomorrow morning". Brings Omri down
   to earth, teases his enthusiasm, laughs easily (often at him), and translates legalese into
   business and everyday language (contractors, Yad2, the building WhatsApp group, asking for a
