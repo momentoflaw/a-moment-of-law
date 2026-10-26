@@ -45,6 +45,8 @@ What he wants: light, flowing, fun; a story told with humour; two hosts who reac
      finding only what the court decided, with its own caveats. Note minority opinions if any.
 4. **Write `script.txt`** (rules below). Hard limit: **1,400 spoken words** (labels excluded);
    episodes must not exceed 12 minutes. Shorter and punchier is better than complete.
+   Before writing, check the show's memory in `continuity.md` (see "Show memory" below): read
+   the last five entries, and grep the rest for today's case numbers, parties and topics.
 5. **Write `script-tts.txt`**: the same turns, with delivery directions (rules below).
 6. **Write `meta.json`**: `title`, `date`, `publish` (false unless the owner said to publish),
    `description` (one paragraph, ending with the AI and not-legal-advice disclaimer), and
@@ -55,11 +57,13 @@ What he wants: light, flowing, fun; a story told with humour; two hosts who reac
    - The holding and outcome match the operative part of each decision; nothing invented; no
      party allegation presented as a finding.
    - Both decisions include the mandatory spoken elements.
+   - Any callback to an earlier episode matches its `continuity.md` entry.
    - Funny enough? Each decision has at least three real jokes, and the hosts react to each
      other rather than taking turns reading. If not, rewrite before pushing.
    - Word count ≤ 1,400; every line starts with `עמרי` or `מיכל`; `script.txt` has no
      parentheses, emojis, headings, Markdown or tags; `script-tts.txt` contains no digits.
-8. **Publish to GitHub**: commit to `main` and push, which starts the workflow. Wait for it and
+8. **Publish to GitHub**: add the episode's entry at the end of `continuity.md`, commit it with
+   the episode files to `main` and push, which starts the workflow. Wait for it and
    check the release with REST calls (`gh api repos/momentoflaw/a-moment-of-law/...`; GitHub
    GraphQL is blocked from Claude sessions, so `gh run list` and `gh release list` fail).
    Never commit MP3 files.
@@ -92,7 +96,10 @@ What he wants: light, flowing, fun; a story told with humour; two hosts who reac
 Voices: pair A (Omri `Algieba`, Michal `Leda`), chosen by the owner on 26.10.2026.
 
 Full character bible (background, education, culture, habits, catchphrases, running gags):
-`hosts.md`. Read it before writing; use one or two details per episode, never all of them.
+`hosts.md`. Read it before writing. Background details are seasoning, not a quota: use one
+only when it grows naturally out of the decision or the conversation, and many episodes will use
+none. Never force one in. What every episode has is the personalities, the dynamic and the
+recurring segments.
 
 - **Omri, the law nerd.** A genuine legal geek with a warm, articulate radio voice. Fluent and
   precise, speaks in well-formed sentences, reads Supreme Court decisions for fun late at night,
@@ -101,6 +108,8 @@ Full character bible (background, education, culture, habits, catchphrases, runn
   Recurring bit, "הפינה של עמרי": one short line from the decision that he finds beautiful,
   read with real emotion.
 - **Michal, the bottom line.** Young, giggly, mischievous and cynical, with a business brain.
+  She studied law and knows commercial law well, but on principle never sat the bar exam; she is
+  by-the-book with money and sharp on investments (for metaphors, never investment advice).
   Sees every decision through cost, risk and "what do I do tomorrow morning". Brings Omri down
   to earth, teases his enthusiasm, laughs easily (often at him), and translates legalese into
   business and everyday language (contractors, Yad2, the building WhatsApp group, asking for a
@@ -126,6 +135,19 @@ Full character bible (background, education, culture, habits, catchphrases, runn
   never quoted lyrics. Topical references only after checking them that week. Black humour is
   allowed, but never at the expense of victims, bereaved families or hostages, and no partisan
   side-taking.
+
+## Show memory (`continuity.md`)
+
+Omri and Michal remember what they have covered. `continuity.md` logs every episode: for each
+decision the case number, court, judges, date, main parties, a one-line holding, topic keywords
+and the Nevo link; lines worth calling back; and canon, the facts about the hosts said on air.
+
+- When today's decision connects to one covered before (the same doctrine, an opposite result,
+  the same parties, or a later stage of the same case), the hosts may bring the earlier one up
+  as a short anecdote, recapping it in a sentence so a new listener can follow. Only when it
+  adds something; at most one or two per episode; facts only as logged.
+- If a decision covered before was reversed or changed on appeal, say so on air.
+- Canon binds: once a fact about a host is said on air, it stays true. Log new facts.
 
 ## TTS rules (`script-tts.txt`)
 
