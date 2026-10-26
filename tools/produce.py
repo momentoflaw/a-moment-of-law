@@ -175,8 +175,9 @@ def main():
     (out_dir / "episode.json").write_text(json.dumps(info, ensure_ascii=False, indent=2), encoding="utf-8")
     (out_dir / "notes.md").write_text(notes(meta), encoding="utf-8")
     print(f"done: {mp3.name}, {secs / 60:.1f} min, {info['bytes'] / 1e6:.1f} MB", flush=True)
-    if not 8 * 60 <= secs <= 16 * 60 and not mock:
-        print(f"::warning::episode length {secs / 60:.1f} min is outside 8-16 min", flush=True)
+    limit = CFG.get("script", {}).get("max_minutes", 12)
+    if secs > limit * 60 and not mock:
+        print(f"::warning::episode length {secs / 60:.1f} min is over the {limit}-minute limit", flush=True)
 
 
 if __name__ == "__main__":

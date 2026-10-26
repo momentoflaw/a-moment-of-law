@@ -27,5 +27,10 @@
     "pause_seconds": 20,
     "gap_between_requests_seconds": 0.35,
     "mp3_bitrate": "96k"
+  },
+  "script": {
+    "max_minutes": 12,
+    "max_spoken_words": 1400,
+    "note": "Measured on the beta: the deadpan Hebrew delivery runs at about 115 words per minute, so 1,400 spoken words is about 12 minutes."
   }
 }
