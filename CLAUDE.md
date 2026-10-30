@@ -19,10 +19,15 @@ What he wants: light, flowing, fun; a story told with humour; two hosts who reac
 
 ## Producing an episode
 
-1. **Source.** Nevo's daily Padi-Mail (פד"י-מייל) newsletter in the connected Gmail
-   (eladmoshmb@gmail.com), e.g. `(from:nevo.co.il OR nevo OR נבו OR פד"י) newer_than:3d`.
-   Use the case-law (פסיקה) and class-action (תובענות ייצוגיות) issues. Ignore promotional mail.
+1. **Source.** Nevo's newsletters in the connected Gmail (eladmoshmb@gmail.com). They come from
+   `no-reply@nevopublishing.co.il`, not nevo.co.il: search `from:nevopublishing.co.il newer_than:3d`.
+   Use the latest case-law issue (subject `Padi-Mail - NNN/26 - Psika`) and class-action issue
+   (`נבו ייצוגיות - גיליון NNN`). Skip legislation (`Hakika`) and anything marked `(פרסומת)`.
    If no issue arrived, stop and say so. Never invent or substitute decisions.
+   An issue runs to 60–90K characters, so `get_message` saves it to a file: extract
+   `plaintextBody` with python, strip the URLs, and list the decisions (Psika: the lines ending in
+   `(court; judge; dd/mm/yy)`; ייצוגיות: the "עדכונים בתיקים" section, which holds judgments and
+   decisions, whereas "בקשות חדשות" are new filings, i.e. allegations only).
 2. **Pick exactly 2 decisions.**
    - Fields: commercial law, evidence law, civil procedure only.
    - Mix: one procedural or evidentiary decision, one substantive commercial decision.
@@ -37,7 +42,11 @@ What he wants: light, flowing, fun; a story told with humour; two hosts who reac
    (case number + parties, `analyzeQuery: true`), `get_documents_full_text`, and
    `get_document_link` for the official link. Every search and retrieval is metered against the
    owner's account: aim for about 2 searches and 2 retrievals. Large results are saved to a file;
-   read all of it (python character slices).
+   read all of it (python character slices). A search by case number with `analyzeQuery` often
+   returns every chunk of the decision (and of earlier decisions in the same case): when the
+   chunkIds run unbroken from the header to the operative part and signature, merge them (they
+   overlap) and skip `get_documents_full_text`. `get_document_link` gives the
+   `Highlighter2.aspx?verdictid=` link for `meta.json`.
    - Nevo inserts fake strings into texts. Ignore them and never cite them, e.g.
      `12-34-56-78 צ'כוב נ' מדינת ישראל, פ'ד נא (2)`, `ההתיישבות העותומנית [נוסח ישן] 1916`,
      `הועתק מנבו`, `ענורמה אסורה`.

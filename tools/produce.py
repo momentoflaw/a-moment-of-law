@@ -45,10 +45,15 @@ def parse_script(path):
 
 
 def chunk(turns):
+    """Group whole turns into about equal requests of at most max_words_per_request
+    words, so the last request is never a short tail with a different sound."""
+    limit = TTS["max_words_per_request"]
+    n = max(1, -(-sum(words(t[2]) for t in turns) // limit))
+    target = sum(words(t[2]) for t in turns) / n
     chunks, cur, count = [], [], 0
     for turn in turns:
         w = words(turn[2])
-        if cur and count + w > TTS["max_words_per_request"]:
+        if cur and (count + w > limit or (count >= target and len(chunks) < n - 1)):
             chunks.append(cur)
             cur, count = [], 0
         cur.append(turn)
