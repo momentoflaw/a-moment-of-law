@@ -27,7 +27,7 @@
     "pause_seconds": 20,
     "gap_between_requests_seconds": 0.35,
     "mp3_bitrate": "96k",
-    "conversational_mode": true,
+    "conversational_mode": false,
     "language": "he-IL",
     "tempo": 1.12
   },
