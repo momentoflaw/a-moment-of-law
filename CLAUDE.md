@@ -17,6 +17,20 @@ flat; far too much technical detail (costs, security deposits, the court expert'
 argument and piece of evidence, all six respondents); not funny enough.
 What he wants: light, flowing, fun; a story told with humour; two hosts who react to each other.
 
+## Owner feedback on the first new-format episode (30.10.2026)
+
+Better overall, and he likes the humour style. To fix:
+- The opening announced "the two decisions we read today". Instead, state the fixed format:
+  every day, one procedural decision and one from substantive law.
+- Case numbers must be read digit by digit (see TTS rules).
+- Too many jokes: nearly every other line was a punchline, which felt forced. Dose the humour.
+- The football references were good but too many: at most two per episode. Use a wider range of
+  references: Israeli culture, TV, music and this week's news (checked).
+- Arkia's outcome got lost. Say plainly what the court ordered: leave granted? appeal allowed?
+  sent back? claim dismissed?
+- The facts were read sentence by sentence, like a ritual. Tell them in flowing paragraphs with
+  natural cut-ins, so it does not sound pre-scripted.
+
 ## Producing an episode
 
 1. **Source.** Nevo's newsletters in the connected Gmail (eladmoshmb@gmail.com). They come from
@@ -71,8 +85,10 @@ What he wants: light, flowing, fun; a story told with humour; two hosts who reac
    - Both decisions include the mandatory spoken elements.
    - Any callback to an earlier episode matches its `continuity.md` entry.
    - Any sports fact (opponent, score, competition, scorers, title) matches that day's news.
-   - Funny enough? Each decision has at least three real jokes, and the hosts react to each
-     other rather than taking turns reading. If not, rewrite before pushing.
+   - Humour in measure: two or three real jokes per decision, not a punchline every other line;
+     at most two football references; at least one other cultural or topical reference. The
+     hosts react to each other rather than taking turns reading. If not, rewrite before pushing.
+   - The facts flow in paragraphs, and each decision's outcome is stated plainly in its own turn.
    - Word count ≤ 1,400; every line starts with `עמרי` or `מיכל`; `script.txt` has no
      parentheses, emojis, headings, Markdown or tags; `script-tts.txt` contains no digits.
 8. **Publish to GitHub**: add the episode's entry at the end of `continuity.md`, commit it with
@@ -87,9 +103,10 @@ What he wants: light, flowing, fun; a story told with humour; two hosts who reac
 
 - One turn per line: `עמרי: ...` or `מיכל: ...`. Omri uses masculine forms, Michal feminine.
   Spoken dialogue only in `script.txt`.
-- Shape: cold open with banter and the AI disclaimer, a fake sponsor line, decision 1,
-  a short bridge, decision 2, a quick outro with one takeaway per decision, and the sign-off
-  `זה היה רגע של משפט`.
+- Shape: cold open with banter, the AI disclaimer and the format line (every day, one procedural
+  decision and one from substantive law; never "the two decisions we read today"), a fake
+  sponsor line, decision 1, a short bridge, decision 2, a quick outro with one takeaway per
+  decision, and the sign-off `זה היה רגע של משפט`.
 - AI disclaimer at the start of every episode: the show is written and recorded entirely by AI
   and keeps improving, and if listeners hear something absurd (house example: a contract formed
   when the offer went into the green bin and the acceptance came back in the orange bin) it may
@@ -101,6 +118,13 @@ What he wants: light, flowing, fun; a story told with humour; two hosts who reac
   did and the one or two reasons that carry it, and the practical takeaway. Leave out costs,
   security deposits, fees, expert names, procedural history, side issues, and arguments or
   evidence that are not the heart of the decision.
+- Facts in flowing paragraphs: the host telling the story speaks in short paragraphs (two to four
+  connected sentences, up to about 60 words), and the other cuts in naturally with a reaction, a
+  question or the end of a sentence. No sentence-by-sentence ping-pong when laying out the facts.
+- The outcome gets its own clear moment: one host states plainly what the court ordered (e.g.
+  leave to appeal granted, appeal allowed, the award cancelled and the claim dismissed; or the
+  case sent back), never right after a punchline or folded into a joke. Michal's bottom line,
+  the business lesson, comes after it, separately.
 - Audience: Israeli lawyers and business people, but accessible to non-lawyers. When a legal or
   Aramaic term appears, the other host translates it, briefly and funnily.
 
@@ -133,9 +157,12 @@ recurring segments.
 - Dynamic: Omri brings the why (law as an art), Michal brings the so-what (money and real life).
   Each decision gets at least one Omri enthusiasm spike that Michal deflates, and ends with her
   bottom line.
-- Real interaction: short turns, reactions ("רגע, מה?"), finishing each other's sentences,
-  teasing, callbacks to earlier jokes, a running gag. Avoid long monologues; no turn over
-  about 45 words.
+- Real interaction: quick banter, reactions ("רגע, מה?"), finishing each other's sentences,
+  cut-ins, teasing, callbacks to earlier jokes. Storytelling comes in paragraphs (see Script
+  rules). Avoid monologues; no turn over about 60 words.
+- Dose the humour: two or three real jokes per decision, with straight stretches between them so
+  the story breathes. Not every line is a punchline. Football: at most two references per
+  episode. Vary the references: Israeli TV, music, culture and this week's news (checked).
 - The comic engine: high-register legal doctrine applied with tragic seriousness to petty
   Israeli daily life (the supermarket queue, the building committee WhatsApp group, the gym
   membership that renews itself), and escalation in threes.
@@ -172,9 +199,10 @@ and the Nevo link; lines worth calling back; and canon, the facts about the host
   especially setups and punchlines. Delivery overall: lively, warm, brisk, smiling, never gloomy.
 - Vocal tags inside the text: `<laugh>` 2–4 times per episode where something is genuinely
   funny, `<short pause>` right before a punchline. No other tags.
-- Write numbers, dates, years, percentages, sums and case numbers in Hebrew words, e.g.
-  `21983-10-26` → `עשרים ואחד אלף תשע מאות שמונים ושלוש, עשר, עשרים ושש`;
+- Write numbers, dates, years, percentages and sums in Hebrew words, e.g.
   `25 באוקטובר 2026` → `עשרים וחמישה באוקטובר, אלפיים עשרים ושש`.
+- Read case numbers digit by digit, every group (the owner's rule: 17254 is
+  `אחד שבע שתיים חמש ארבע`), e.g. `57113-02-26` → `חמש שבע אחד אחד שלוש, אפס שתיים, שתיים שש`.
 - Expand abbreviations: בע"מ → בערבון מוגבל, ע"א → ערעור אזרחי, חו"ל → חוץ לארץ.
 - Add nikud to surnames, Aramaic and ambiguous words, e.g. כֻּלֵּי עָלְמָא, קַל וָחֹמֶר,
   מַשּׂוֹא פָּנִים, הַנּוֹשָׁה, עֲרֻבָּה, אִמְרַת אַגַּב, פְּסִיקְתָּא.
