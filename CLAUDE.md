@@ -33,6 +33,10 @@ Better overall, and he likes the humour style. To fix:
 
 ## Producing an episode
 
+0. **Ask first.** The owner's standing rule (2.11.2026): ask him before producing each new episode,
+   and produce only after he says yes. In the question, include his Claude usage for the week if it
+   can be read (claude.ai/settings/usage through a browser on his computer, one attempt); otherwise
+   give him that link. Episodes stay unpublished (`"publish": false`) until he says otherwise.
 1. **Source.** Nevo's newsletters in the connected Gmail (eladmoshmb@gmail.com). They come from
    `no-reply@nevopublishing.co.il`, not nevo.co.il: search `from:nevopublishing.co.il newer_than:3d`.
    Use the latest case-law issue (subject `Padi-Mail - NNN/26 - Psika`) and class-action issue
