@@ -63,8 +63,10 @@ Better overall, and he likes the humour style. To fix:
 2. **Pick exactly 2 decisions.**
    - Fields: commercial law, evidence law, civil procedure only.
    - Mix: one procedural or evidentiary decision, one substantive commercial decision.
-   - Courts: Supreme or District first. Magistrate only if exceptionally unprecedented, or if no
-     suitable higher-court decision exists that day.
+   - Courts: Supreme or District first. A Magistrate decision may take a slot when its story is
+     clearly better than the best higher-court candidate for that slot (owner, 3.11.2026: a
+     strong Magistrate story beats a dry District decision), when it is exceptionally
+     unprecedented, or when no suitable higher-court decision exists that day.
    - Exclude anything criminal (ע"פ, רע"פ, בש"פ, ת"פ, מ"ת, המ"ע, criminal evidence). A civil
      claim arising from an offence is fine.
    - Skip decisions under a publication ban; keep anonymised parties anonymised.
