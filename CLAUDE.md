@@ -42,6 +42,24 @@ Better overall, and he likes the humour style. To fix:
   interim step in which the court asked for more paperwork. Hence the interest test in step 2.
 - Wording: a court or judge `קבע` (or `פסק`, `הורה`, `דחה`, `קיבל`), never `אמר`.
 
+## Owner feedback on the 3.11.2026 episode (3.11.2026)
+
+- Never put the owner's production notes into the dialogue (the 3.11 cold open joked that
+  listeners complained the hosts talk too fast). His notes change how the show is made, not
+  what the hosts talk about.
+- Fake sponsors must not be real businesses or legal entities. Before using a name, run a web
+  search for the exact name, alone, with the product and with `בע"מ`; if anything real turns
+  up, pick another. Prefer plainly invented, absurd products.
+- Michal's bottom line must come from the decision's holding. On 3.11 her line on the
+  procedural decision was a general tip about public contracts, unrelated to the ruling on
+  amending pleadings. For a procedural or evidentiary decision, her bottom line is the
+  litigation lesson (what to do, or not do, in your own case), in everyday language.
+- Humour: he liked the corridor-and-parlor joke (the judge's own allusion to Pirkei Avot turned
+  against the facts: no corridor and no parlor, just a skeleton), and liked the house-committee
+  comparison less. Prefer humour that grows from the decision's own words and facts over stock
+  comparisons, and rest the house-committee trope.
+- Pronunciation: רבותא is revota, not revuta (`רְבוֹתָא` in `script-tts.txt`).
+
 ## Producing an episode
 
 0. **Ask first.** The owner's standing rule (2.11.2026): ask him before producing each new episode,
@@ -137,6 +155,9 @@ Better overall, and he likes the humour style. To fix:
    - The facts flow in paragraphs, and each decision's outcome is stated plainly in its own turn.
    - No procedural dates other than the decision dates; no deadlines, follow-up dates or sums
      that do not carry the story. Judges `קבע`, never `אמר`. No direction asks for speed.
+   - Nothing in the dialogue refers to the owner's feedback or to how the show is made, beyond
+     the AI disclaimer. The fake sponsor's name was searched and is not a real business or
+     entity. Each of Michal's bottom lines follows from that decision's holding.
    - Word count ≤ 1,250; every line starts with `עמרי` or `מיכל`; `script.txt` has no
      parentheses, emojis, headings, Markdown or tags; `script-tts.txt` contains no digits.
 8. **Publish to GitHub**: add the episode's entry at the end of `continuity.md`, commit it with
@@ -154,7 +175,7 @@ Better overall, and he likes the humour style. To fix:
   Spoken dialogue only in `script.txt`.
 - Shape: cold open with banter, the AI disclaimer and the format line (every day, one procedural
   decision and one from substantive law; never "the two decisions we read today"), a fake
-  sponsor line, decision 1, a short bridge, decision 2, a quick outro with one takeaway per
+  sponsor line (an invented product, checked not to be a real business), decision 1, a short bridge, decision 2, a quick outro with one takeaway per
   decision, and the sign-off `זה היה רגע של משפט`.
 - AI disclaimer at the start of every episode: the show is written and recorded entirely by AI
   and keeps improving, and if listeners hear something absurd (house example: a contract formed
@@ -180,7 +201,7 @@ Better overall, and he likes the humour style. To fix:
 - The outcome gets its own clear moment: one host states plainly what the court ordered (e.g.
   leave to appeal granted, appeal allowed, the award cancelled and the claim dismissed; or the
   case sent back), never right after a punchline or folded into a joke. Michal's bottom line,
-  the business lesson, comes after it, separately.
+  the practical lesson of the holding, comes after it, separately.
 - Audience: Israeli lawyers and business people, but accessible to non-lawyers. When a legal or
   Aramaic term appears, the other host translates it, briefly and funnily.
 
@@ -207,9 +228,11 @@ recurring segments.
   she brings it up briefly, usually in the cold open, with verified facts only.
   Sees every decision through cost, risk and "what do I do tomorrow morning". Brings Omri down
   to earth, teases his enthusiasm, laughs easily (often at him), and translates legalese into
-  business and everyday language (contractors, Yad2, the building WhatsApp group, asking for a
-  raise). Impatient with long reasoning, sharp when it counts.
-  Recurring bit, "השורה התחתונה של מיכל": the business lesson in one sentence.
+  business and everyday language (contractors, Yad2, asking for a raise). Impatient with long
+  reasoning, sharp when it counts.
+  Recurring bit, "השורה התחתונה של מיכל": the practical lesson of the holding in one sentence:
+  the business lesson for a substantive decision, the litigation lesson for a procedural or
+  evidentiary one.
 - Dynamic: Omri brings the why (law as an art), Michal brings the so-what (money and real life).
   Each decision gets at least one Omri enthusiasm spike that Michal deflates, and ends with her
   bottom line.
@@ -220,8 +243,9 @@ recurring segments.
   the story breathes. Not every line is a punchline. Football: at most two references per
   episode. Vary the references: Israeli TV, music, culture and this week's news (checked).
 - The comic engine: high-register legal doctrine applied with tragic seriousness to petty
-  Israeli daily life (the supermarket queue, the building committee WhatsApp group, the gym
-  membership that renews itself), and escalation in threes.
+  Israeli daily life (the supermarket queue, the gym membership that renews itself), and
+  escalation in threes. The best jokes grow from the decision's own words and facts (3.11: the
+  judge's "corridor and parlor" for a building that is only a skeleton).
 - Inspired by the mechanics of Taycher & Zerachowicz: pure absurd comedy rather than message
   satire, total commitment to an absurd premise, mock-heroic gravity, pompous register on cheap
   subjects, sacred-secular register mixing, lines that sound wise and then deflate, fake radio
@@ -263,6 +287,6 @@ and the Nevo link; lines worth calling back; and canon, the facts about the host
   `אחד שבע שתיים חמש ארבע`), e.g. `57113-02-26` → `חמש שבע אחד אחד שלוש, אפס שתיים, שתיים שש`.
 - Expand abbreviations: בע"מ → בערבון מוגבל, ע"א → ערעור אזרחי, חו"ל → חוץ לארץ.
 - Add nikud to surnames, Aramaic and ambiguous words, e.g. כֻּלֵּי עָלְמָא, קַל וָחֹמֶר,
-  מַשּׂוֹא פָּנִים, הַנּוֹשָׁה, עֲרֻבָּה, אִמְרַת אַגַּב, פְּסִיקְתָּא.
+  מַשּׂוֹא פָּנִים, הַנּוֹשָׁה, עֲרֻבָּה, אִמְרַת אַגַּב, פְּסִיקְתָּא, רְבוֹתָא (revota).
 - Latin company names may stay in Latin. Use `...` to hand a sentence over to the other host.
 - Voice samples to compare: `episodes/2026-10-26-voices-a|b|c/`.
