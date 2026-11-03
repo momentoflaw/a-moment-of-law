@@ -13,12 +13,12 @@
     "עמרי": {
       "id": "Omri",
       "voice": "Algieba",
-      "style": "Warm, articulate radio voice of a Jerusalem law nerd: fluent and precise, in smooth, well-formed sentences; when something legal excites him he speeds up with childlike enthusiasm. Endearing, a little pedantic, smiling. Brisk, lively delivery. Natural Israeli Hebrew."
+      "style": "Warm, articulate radio voice of a Jerusalem law nerd: fluent and precise, in smooth, well-formed sentences; when something legal excites him his voice lights up with childlike enthusiasm. Endearing, a little pedantic, smiling. Lively but unhurried delivery. Natural Israeli Hebrew."
     },
     "מיכל": {
       "id": "Michal",
       "voice": "Leda",
-      "style": "Young Tel Aviv woman, giggly, mischievous and cynical, with a sharp business mind. Fast, casual, slangy and warm; cuts to the bottom line, teases her co-host and laughs easily, often mid-sentence. Natural Israeli Hebrew."
+      "style": "Young Tel Aviv woman, giggly, mischievous and cynical, with a sharp business mind. Casual, slangy and warm, at an easy, relaxed pace; cuts to the bottom line, teases her co-host and laughs easily, often mid-sentence. Natural Israeli Hebrew."
     }
   },
   "tts": {
@@ -29,11 +29,12 @@
     "mp3_bitrate": "96k",
     "conversational_mode": false,
     "language": "he-IL",
-    "tempo": 1.12
+    "tempo": 1.0,
+    "pace": "Pace: relaxed and unhurried, like a conversation over coffee, with natural pauses between sentences; lively in tone, never rushed."
   },
   "script": {
     "max_minutes": 12,
-    "max_spoken_words": 1400,
-    "note": "Measured: Gemini Hebrew TTS speaks about 115-120 words per minute; mastering speeds it up by tts.tempo (1.12), so 1,400 spoken words stay under 12 minutes."
+    "max_spoken_words": 1250,
+    "note": "Measured on 30.10 and 1.11.2026: with brisk directions Gemini Hebrew TTS spoke about 123 words per minute, and tempo 1.12 made it about 139, which the owner found too fast. Since 3.11 tempo is 1.0 and every turn carries tts.pace; expect about 105-115 words per minute, so 1,250 spoken words stay under 12 minutes."
   }
 }

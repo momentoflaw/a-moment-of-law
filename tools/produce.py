@@ -63,6 +63,14 @@ def chunk(turns):
     return chunks
 
 
+def turn_style(speaker, style):
+    """The turn's own direction, or the speaker's default style, plus tts.pace,
+    so a per-turn direction never drops the pace instruction."""
+    s = (style or CFG["speakers"][speaker]["style"]).rstrip(". ")
+    pace = TTS.get("pace", "").strip()
+    return f"{s}. {pace}" if pace and pace not in s else s
+
+
 def request_audio(turns, voices, full=True):
     """One Interactions API call. full=False drops optional speech settings
     (conversational mode, language) in case the API rejects them."""
@@ -74,7 +82,7 @@ def request_audio(turns, voices, full=True):
         "annotations": [{
             "type": "speech_metadata",
             "speaker": CFG["speakers"][speaker]["id"],
-            "style": style or CFG["speakers"][speaker]["style"],
+            "style": turn_style(speaker, style),
         }],
     } for speaker, style, text in turns]
     speakers = []

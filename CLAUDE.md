@@ -31,6 +31,17 @@ Better overall, and he likes the humour style. To fix:
 - The facts were read sentence by sentence, like a ritual. Tell them in flowing paragraphs with
   natural cut-ins, so it does not sound pre-scripted.
 
+## Owner feedback on the 1.11.2026 episode (3.11.2026)
+
+- Too fast. Delivery is now unhurried: `tts.tempo` is 1.0 (no speed-up in mastering), the voice
+  styles ask for a relaxed pace, and `produce.py` adds `tts.pace` to every turn's direction.
+  Never direct a turn to be fast, brisk, rapid or rushed.
+- Uninteresting details, e.g. the deadline for filing the amended settlement and the date the
+  judge set for her own follow-up. Every detail must earn its place (see Script rules).
+- The class-action settlement decision met the selection rules but was not interesting: an
+  interim step in which the court asked for more paperwork. Hence the interest test in step 2.
+- Wording: a court or judge `קבע` (or `פסק`, `הורה`, `דחה`, `קיבל`), never `אמר`.
+
 ## Producing an episode
 
 0. **Ask first.** The owner's standing rule (2.11.2026): ask him before producing each new episode,
@@ -39,8 +50,11 @@ Better overall, and he likes the humour style. To fix:
    give him that link. Episodes stay unpublished (`"publish": false`) until he says otherwise.
 1. **Source.** Nevo's newsletters in the connected Gmail (eladmoshmb@gmail.com). They come from
    `no-reply@nevopublishing.co.il`, not nevo.co.il: search `from:nevopublishing.co.il newer_than:3d`.
-   Use the latest case-law issue (subject `Padi-Mail - NNN/26 - Psika`) and class-action issue
-   (`נבו ייצוגיות - גיליון NNN`). Skip legislation (`Hakika`) and anything marked `(פרסומת)`.
+   Use every case-law issue (subject `Padi-Mail - NNN/26 - Psika`) and class-action issue
+   (`נבו ייצוגיות - גיליון NNN`) that arrived since the last produced episode (the last folder
+   under `episodes/`; widen `newer_than` if needed), so there is more to choose from, and skip
+   decisions already logged in `continuity.md`. Skip legislation (`Hakika`) and anything marked
+   `(פרסומת)`.
    If no issue arrived, stop and say so. Never invent or substitute decisions.
    An issue runs to 60–90K characters, so `get_message` saves it to a file: extract
    `plaintextBody` with python, strip the URLs, and list the decisions (Psika: the lines ending in
@@ -54,8 +68,19 @@ Better overall, and he likes the humour style. To fix:
    - Exclude anything criminal (ע"פ, רע"פ, בש"פ, ת"פ, מ"ת, המ"ע, criminal evidence). A civil
      claim arising from an offence is fine.
    - Skip decisions under a publication ban; keep anonymised parties anonymised.
+   - **Interest test** (owner, 3.11.2026). Shortlist 4–6 candidates that pass the rules above
+     and score each 0–2 on: (a) it decides a real dispute: a judgment, an appeal or leave
+     decided, a claim struck out or let in, an award; (b) a rule a litigator or a business
+     person can use tomorrow morning; (c) a story: who wants what from whom, a twist,
+     recognisable parties or places, real stakes; (d) surprise: the expected side loses, or the
+     court intervenes or criticises. Take the top procedural and the top substantive candidate.
+   - Do not pick: interim or case-management decisions (deadlines, amended filings, reports,
+     scheduling, "fix it and come back"); approvals of agreed settlements or withdrawals with no
+     contested legal question; decisions that turn only on credibility or facts with no lesson.
    - Prefer decisions with a story (a conflict people can picture). Avoid cases where humour
      would land on vulnerable private people (minors, illness, bereavement).
+   - Keep the shortlist: the delivery email lists the runners-up, one line each with why they
+     lost, so the owner can steer the selection.
 3. **Read the full text** with the Nevo connector: `init_session`, then `search_legal_context`
    (case number + parties, `analyzeQuery: true`), `get_documents_full_text`, and
    `get_document_link` for the official link. Every search and retrieval is metered against the
@@ -70,8 +95,9 @@ Better overall, and he likes the humour style. To fix:
      `הועתק מנבו`, `ענורמה אסורה`.
    - Separate the court's holdings from the parties' arguments and from obiter. State as a
      finding only what the court decided, with its own caveats. Note minority opinions if any.
-4. **Write `script.txt`** (rules below). Hard limit: **1,400 spoken words** (labels excluded);
-   episodes must not exceed 12 minutes. Shorter and punchier is better than complete.
+4. **Write `script.txt`** (rules below). Hard limit: **1,250 spoken words** (labels excluded);
+   episodes must not exceed 12 minutes. At the relaxed pace the TTS speaks about 105–115 words a
+   minute, so aim for 1,000–1,150. Shorter and punchier is better than complete.
    Before writing, check the show's memory in `continuity.md` (see "Show memory" below): read
    the last five entries, and grep the rest for today's case numbers, parties and topics.
    Also check, with one web search of that day's Hebrew sports news, whether Maccabi Tel Aviv's
@@ -93,7 +119,9 @@ Better overall, and he likes the humour style. To fix:
      at most two football references; at least one other cultural or topical reference. The
      hosts react to each other rather than taking turns reading. If not, rewrite before pushing.
    - The facts flow in paragraphs, and each decision's outcome is stated plainly in its own turn.
-   - Word count ≤ 1,400; every line starts with `עמרי` or `מיכל`; `script.txt` has no
+   - No procedural dates other than the decision dates; no deadlines, follow-up dates or sums
+     that do not carry the story. Judges `קבע`, never `אמר`. No direction asks for speed.
+   - Word count ≤ 1,250; every line starts with `עמרי` or `מיכל`; `script.txt` has no
      parentheses, emojis, headings, Markdown or tags; `script-tts.txt` contains no digits.
 8. **Publish to GitHub**: add the episode's entry at the end of `continuity.md`, commit it with
    the episode files to `main` and push, which starts the workflow. Wait for it and
@@ -101,7 +129,8 @@ Better overall, and he likes the humour style. To fix:
    GraphQL is blocked from Claude sessions, so `gh run list` and `gh release list` fail).
    Never commit MP3 files.
 9. **Deliver**: email eladmoshe1992@gmail.com (subject `רגע של משפט | <date> | <title>`) with the
-   release link, the two decisions with their Nevo links (the appendix), and the script.
+   release link, the two decisions with their Nevo links (the appendix), the runners-up (one
+   line each, why they lost), and the script.
 
 ## Script rules
 
@@ -122,6 +151,13 @@ Better overall, and he likes the humour style. To fix:
   did and the one or two reasons that carry it, and the practical takeaway. Leave out costs,
   security deposits, fees, expert names, procedural history, side issues, and arguments or
   evidence that are not the heart of the decision.
+- Every detail must earn its place: if a listener would not miss it, cut it. The only
+  procedural date spoken is the decision date. Leave out deadlines given to the parties (e.g.
+  file an amended settlement by X), the next hearing, the date a judge set for her own
+  follow-up, the dates of earlier filings and hearings, and sums that do not carry the story.
+  A year inside the story may stay when it is the point (a building closed since 2018).
+- Courts and judges `קבע`, `פסק`, `הורה`, `דחה` or `קיבל`; never `אמר`. A verbatim quote is
+  introduced with `כתב` or `כתבה`.
 - Facts in flowing paragraphs: the host telling the story speaks in short paragraphs (two to four
   connected sentences, up to about 60 words), and the other cuts in naturally with a reaction, a
   question or the end of a sentence. No sentence-by-sentence ping-pong when laying out the facts.
@@ -200,7 +236,9 @@ and the Nevo link; lines worth calling back; and canon, the facts about the host
 - Same turns as `script.txt`. Each line may carry a delivery direction in English square
   brackets after the speaker name, used as that turn's style:
   `מיכל [laughing, teasing]: ...`, `עמרי [mock-solemn announcer]: ...`. Use them on most lines,
-  especially setups and punchlines. Delivery overall: lively, warm, brisk, smiling, never gloomy.
+  especially setups and punchlines. Delivery overall: lively, warm and smiling, never gloomy, at
+  a relaxed, unhurried pace with natural pauses (the owner found the 1.11 episode too fast).
+  Never write fast, brisk, rapid, rushing or speeding up in a direction.
 - Vocal tags inside the text: `<laugh>` 2–4 times per episode where something is genuinely
   funny, `<short pause>` right before a punchline. No other tags.
 - Write numbers, dates, years, percentages and sums in Hebrew words, e.g.
