@@ -61,8 +61,12 @@ Better overall, and he likes the humour style. To fix:
    `(court; judge; dd/mm/yy)`; ייצוגיות: the "עדכונים בתיקים" section, which holds judgments and
    decisions, whereas "בקשות חדשות" are new filings, i.e. allegations only).
 2. **Pick exactly 2 decisions.**
-   - Fields: commercial law, evidence law, civil procedure only.
-   - Mix: one procedural or evidentiary decision, one substantive commercial decision.
+   - Fields: commercial and consumer law (class actions included), evidence law, civil
+     procedure, and civil decisions where law meets technology. Nothing criminal (see below).
+   - Mix: one procedural or evidentiary decision, one substantive decision (commercial or
+     consumer). A class-action certification decision fills the procedural slot when it turns on
+     the certification requirements, and the substantive slot when it turns on the cause of
+     action.
    - Courts: Supreme or District first. A Magistrate decision may take a slot when its story is
      clearly better than the best higher-court candidate for that slot (owner, 3.11.2026: a
      strong Magistrate story beats a dry District decision), when it is exceptionally
@@ -75,7 +79,17 @@ Better overall, and he likes the humour style. To fix:
      decided, a claim struck out or let in, an award; (b) a rule a litigator or a business
      person can use tomorrow morning; (c) a story: who wants what from whom, a twist,
      recognisable parties or places, real stakes; (d) surprise: the expected side loses, or the
-     court intervenes or criticises. Take the top procedural and the top substantive candidate.
+     court intervenes or criticises. Add the owner's preference points below, then take the top
+     procedural and the top substantive candidate.
+   - **The owner's preferences** (3.11.2026), added to the interest score:
+     - +2 where law meets technology, especially AI: algorithms, platforms and apps, data and
+       privacy, digital assets, AI-generated content, AI used in litigation. To find these,
+       scan every issue for terms such as בינה מלאכותית, AI, אלגוריתם, ChatGPT, אפליקציה,
+       פלטפורמה, פרטיות, מאגר מידע, סייבר, קריפטו, דיגיטלי.
+     - +2 a class action at a deciding stage: a motion to certify granted or denied, or a
+       certified class action allowed or dismissed. Not new filings, settlements or withdrawals.
+     - +1 consumer law, or +2 instead when it is a Supreme Court consumer judgment.
+     - Procedural or evidentiary slot: +2 for a Supreme Court decision.
    - Do not pick: interim or case-management decisions (deadlines, amended filings, reports,
      scheduling, "fix it and come back"); approvals of agreed settlements or withdrawals with no
      contested legal question; decisions that turn only on credibility or facts with no lesson.
