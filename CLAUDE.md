@@ -60,6 +60,15 @@ Better overall, and he likes the humour style. To fix:
   comparisons, and rest the house-committee trope.
 - Pronunciation: רבותא is revota, not revuta (`רְבוֹתָא` in `script-tts.txt`).
 
+## Owner feedback on the 4.11.2026 episode (4.11.2026)
+
+- The Maccabi mention felt very forced: Michal opened with the 5-0 win as a news item of its
+  own, cut off from everything else. A Maccabi win comes in only in passing, inside a line that
+  grows out of the conversation or the decision; if it does not fit naturally, leave it out.
+- The AI disclaimer was introduced as "another standing note" (`ועוד הבהרה קבועה`), which
+  sounded robotic. Never label it as a fixed or standing notice; lead into it naturally, as part
+  of the banter, and vary the lead-in.
+
 ## Producing an episode
 
 0. **Ask first.** The owner's standing rule (2.11.2026): ask him before producing each new episode,
@@ -158,6 +167,8 @@ Better overall, and he likes the humour style. To fix:
    - Nothing in the dialogue refers to the owner's feedback or to how the show is made, beyond
      the AI disclaimer. The fake sponsor's name was searched and is not a real business or
      entity. Each of Michal's bottom lines follows from that decision's holding.
+   - Any Maccabi mention is incidental, inside a line that grows from the conversation, not a
+     news item of its own; the AI disclaimer is not introduced as a fixed or standing notice.
    - Word count ≤ 1,250; every line starts with `עמרי` or `מיכל`; `script.txt` has no
      parentheses, emojis, headings, Markdown or tags; `script-tts.txt` contains no digits.
 8. **Publish to GitHub**: add the episode's entry at the end of `continuity.md`, commit it with
@@ -180,7 +191,9 @@ Better overall, and he likes the humour style. To fix:
 - AI disclaimer at the start of every episode: the show is written and recorded entirely by AI
   and keeps improving, and if listeners hear something absurd (house example: a contract formed
   when the offer went into the green bin and the acceptance came back in the orange bin) it may
-  not have happened. Keep the core, vary the absurd example, keep it quick.
+  not have happened. Keep the core, vary the absurd example, keep it quick. Lead into it
+  naturally, as part of the banter, and vary the lead-in; never announce it as a fixed or
+  standing notice (`הבהרה קבועה`) (owner, 4.11.2026).
 - Mandatory spoken elements for each decision, woven in naturally: case number, court, judge(s)
   (a registrar is `הרשם, השופט ...`), the main parties only (not every respondent), and the
   decision date.
@@ -224,8 +237,10 @@ recurring segments.
 - **Michal, the bottom line.** Young, giggly, mischievous and cynical, with a business brain.
   She studied law and knows commercial law well, but on principle never sat the bar exam; she is
   by-the-book with money and sharp on investments (for metaphors, never investment advice).
-  A die-hard Maccabi Tel Aviv football fan: the day after a notable or unusual win, or a title,
-  she brings it up briefly, usually in the cold open, with verified facts only.
+  A die-hard Maccabi Tel Aviv football fan: after a notable or unusual win, or a title, she may
+  mention it in passing, woven into a line that fits the conversation or the decision, never
+  as a standalone announcement (owner, 4.11.2026), and with verified facts only. If it does not
+  fit naturally, it stays out.
   Sees every decision through cost, risk and "what do I do tomorrow morning". Brings Omri down
   to earth, teases his enthusiasm, laughs easily (often at him), and translates legalese into
   business and everyday language (contractors, Yad2, asking for a raise). Impatient with long
