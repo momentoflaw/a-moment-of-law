@@ -32,7 +32,9 @@ jobs:
         run: |
           command -v ffmpeg >/dev/null || (sudo apt-get update -q && sudo apt-get install -y -q ffmpeg)
           python3 -m venv .venv
-          .venv/bin/pip install --quiet "google-genai>=2.25.0"
+          # google-genai 3.0.0 (6.11.2026) answers "Model 'gemini-3.8-flash-tts' not found"; stay on 2.x
+          .venv/bin/pip install --quiet "google-genai>=2.25.0,<3"
+          .venv/bin/pip show google-genai | head -2
 
       - name: Produce pending episodes
         env:
