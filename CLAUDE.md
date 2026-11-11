@@ -34,7 +34,8 @@ Better overall, and he likes the humour style. To fix:
 ## Owner feedback on the 1.11.2026 episode (3.11.2026)
 
 - Too fast. Delivery is now unhurried: `tts.tempo` is 1.0 (no speed-up in mastering), the voice
-  styles ask for a relaxed pace, and `produce.py` adds `tts.pace` to every turn's direction.
+  styles ask for a relaxed pace, and `produce.py` adds `tts.pace` (and, since 11.11.2026, the
+  host's voice anchor) to every turn's style.
   Never direct a turn to be fast, brisk, rapid or rushed.
 - Uninteresting details, e.g. the deadline for filing the amended settlement and the date the
   judge set for her own follow-up. Every detail must earn its place (see Script rules).
@@ -68,6 +69,24 @@ Better overall, and he likes the humour style. To fix:
 - The AI disclaimer was introduced as "another standing note" (`ועוד הבהרה קבועה`), which
   sounded robotic. Never label it as a fixed or standing notice; lead into it naturally, as part
   of the banter, and vary the lead-in.
+
+## Owner feedback on the 10.11.2026 episode (11.11.2026)
+
+- Both voices changed during the episode, already in the first minutes. Two causes, both fixed in
+  the pipeline: a turn's direction used to replace the host's default style, so directions such
+  as "smooth radio-ad voice" or "clear news-anchor tone" produced a different person; and the
+  episode went out in two TTS requests, which can come back with different voices. Now
+  `produce.py` puts the host's voice anchor (`speakers.<name>.anchor` in `podcast.json`) before
+  every direction, directions describe emotion only, and an episode must fit one request (step 4
+  and the TTS rules). He did not want the episode re-produced.
+- A little more humour, not much more: sophisticated and effortless, in the mechanics of
+  Taycher & Zerachowicz, never laboured or tedious, and always tied to the decision's content.
+- Omri's `זה היה רגע של משפט` is the last line of the episode. Michal adds nothing after it.
+- Michal's bottom line is a chance for a sophisticated joke, and its lesson must speak to broad
+  groups within the audience (litigators, business owners, employers, landlords and tenants,
+  consumers), never to a niche. On 10.11 the Kaspont lesson spoke to ATM operators, a handful of
+  people; it should have spoken to, say, everyone whose service reaches the public through
+  someone else's machine, app, franchisee or contractor.
 
 ## Producing an episode
 
@@ -138,9 +157,14 @@ Better overall, and he likes the humour style. To fix:
      `הועתק מנבו`, `ענורמה אסורה`.
    - Separate the court's holdings from the parties' arguments and from obiter. State as a
      finding only what the court decided, with its own caveats. Note minority opinions if any.
-4. **Write `script.txt`** (rules below). Hard limit: **1,250 spoken words** (labels excluded);
-   episodes must not exceed 12 minutes. At the relaxed pace the TTS speaks about 105–115 words a
-   minute, so aim for 1,000–1,150. Shorter and punchier is better than complete.
+4. **Write `script.txt`** (rules below). Length: the whole episode must fit one TTS request, so
+   both voices stay the same throughout (owner, 11.11.2026). `script-tts.txt` may hold at most
+   `tts.max_words_per_request` words as `produce.py` counts them (920; spelled-out numbers add a
+   few percent), so aim for **820–880 spoken words** in `script.txt` (labels excluded), about 8
+   minutes at the relaxed pace of 105–115 words a minute. Shorter and punchier is better than
+   complete. (920 assumes 32 output tokens per second of audio against the model's 16,384-token
+   output cap; the run log prints each request's token usage, so raise it if the real rate is
+   lower.)
    Before writing, check the show's memory in `continuity.md` (see "Show memory" below): read
    the last five entries, and grep the rest for today's case numbers, parties and topics.
    Also check, with one web search of that day's Hebrew sports news, whether Maccabi Tel Aviv's
@@ -158,21 +182,26 @@ Better overall, and he likes the humour style. To fix:
    - Both decisions include the mandatory spoken elements.
    - Any callback to an earlier episode matches its `continuity.md` entry.
    - Any sports fact (opponent, score, competition, scorers, title) matches that day's news.
-   - Humour in measure: two or three real jokes per decision, not a punchline every other line;
-     at most two football references; at least one other cultural or topical reference. The
-     hosts react to each other rather than taking turns reading. If not, rewrite before pushing.
+   - Humour in measure: three or four real jokes per decision, sophisticated and tied to the
+     decision, never laboured, and not a punchline every other line; at most two football
+     references; at least one other cultural or topical reference. The hosts react to each
+     other rather than taking turns reading. If not, rewrite before pushing.
    - The facts flow in paragraphs, and each decision's outcome is stated plainly in its own turn.
    - No procedural dates other than the decision dates; no deadlines, follow-up dates or sums
      that do not carry the story. Judges `קבע`, never `אמר`. No direction asks for speed.
    - Nothing in the dialogue refers to the owner's feedback or to how the show is made, beyond
      the AI disclaimer. The fake sponsor's name was searched and is not a real business or
-     entity. Each of Michal's bottom lines follows from that decision's holding.
+     entity. Each of Michal's bottom lines follows from that decision's holding, speaks to a
+     broad group within the audience rather than a niche, and carries a light, sophisticated joke.
    - Any Maccabi mention is incidental, inside a line that grows from the conversation, not a
      news item of its own; the AI disclaimer is not introduced as a fixed or standing notice.
-   - Word count ≤ 1,250; every line starts with `עמרי` or `מיכל`; `script.txt` has no
-     parentheses, emojis, headings, Markdown or tags; `script-tts.txt` contains no digits.
+   - `script.txt` has 820–880 spoken words and `script-tts.txt` fits `tts.max_words_per_request`
+     as `produce.py` counts (one TTS request); every line starts with `עמרי` or `מיכל`; the last
+     line is Omri's `זה היה רגע של משפט`; `script.txt` has no parentheses, emojis, headings,
+     Markdown or tags; `script-tts.txt` contains no digits, and no direction names a voice type.
 8. **Publish to GitHub**: add the episode's entry at the end of `continuity.md`, commit it with
-   the episode files to `main` and push, which starts the workflow. Wait for it and
+   the episode files to `main` and push, which starts the workflow. Wait for it, read the run
+   log's request lines (one request, its length and token usage, no cut-off warning), and
    check the release with REST calls (`gh api repos/momentoflaw/a-moment-of-law/...`; GitHub
    GraphQL is blocked from Claude sessions, so `gh run list` and `gh release list` fail).
    Never commit MP3 files.
@@ -187,7 +216,8 @@ Better overall, and he likes the humour style. To fix:
 - Shape: cold open with banter, the AI disclaimer and the format line (every day, one procedural
   decision and one from substantive law; never "the two decisions we read today"), a fake
   sponsor line (an invented product, checked not to be a real business), decision 1, a short bridge, decision 2, a quick outro with one takeaway per
-  decision, and the sign-off `זה היה רגע של משפט`.
+  decision, and the sign-off `זה היה רגע של משפט`, said by Omri as the episode's last line;
+  nothing comes after it (owner, 11.11.2026).
 - AI disclaimer at the start of every episode: the show is written and recorded entirely by AI
   and keeps improving, and if listeners hear something absurd (house example: a contract formed
   when the offer went into the green bin and the acceptance came back in the orange bin) it may
@@ -247,15 +277,19 @@ recurring segments.
   reasoning, sharp when it counts.
   Recurring bit, "השורה התחתונה של מיכל": the practical lesson of the holding in one sentence:
   the business lesson for a substantive decision, the litigation lesson for a procedural or
-  evidentiary one.
+  evidentiary one. It speaks to a broad group within the audience (litigators, business owners,
+  employers, landlords and tenants, consumers), never to a niche such as ATM operators, and it
+  is a chance for a sophisticated joke (owner, 11.11.2026).
 - Dynamic: Omri brings the why (law as an art), Michal brings the so-what (money and real life).
   Each decision gets at least one Omri enthusiasm spike that Michal deflates, and ends with her
   bottom line.
 - Real interaction: quick banter, reactions ("רגע, מה?"), finishing each other's sentences,
   cut-ins, teasing, callbacks to earlier jokes. Storytelling comes in paragraphs (see Script
   rules). Avoid monologues; no turn over about 60 words.
-- Dose the humour: two or three real jokes per decision, with straight stretches between them so
-  the story breathes. Not every line is a punchline. Football: at most two references per
+- Dose the humour: three or four real jokes per decision (owner, 11.11.2026: a little more than
+  before, not much more), sophisticated and effortless, never laboured or tedious, always tied to
+  the decision's content; with straight stretches between them so the story breathes. Not every
+  line is a punchline. Football: at most two references per
   episode. Vary the references: Israeli TV, music, culture and this week's news (checked).
 - The comic engine: high-register legal doctrine applied with tragic seriousness to petty
   Israeli daily life (the supermarket queue, the gym membership that renews itself), and
@@ -288,12 +322,21 @@ and the Nevo link; lines worth calling back; and canon, the facts about the host
 
 ## TTS rules (`script-tts.txt`)
 
-- Same turns as `script.txt`. Each line may carry a delivery direction in English square
-  brackets after the speaker name, used as that turn's style:
-  `מיכל [laughing, teasing]: ...`, `עמרי [mock-solemn announcer]: ...`. Use them on most lines,
-  especially setups and punchlines. Delivery overall: lively, warm and smiling, never gloomy, at
-  a relaxed, unhurried pace with natural pauses (the owner found the 1.11 episode too fast).
-  Never write fast, brisk, rapid, rushing or speeding up in a direction.
+- Same turns as `script.txt`. A line may carry a delivery direction in English square brackets
+  after the speaker name: `מיכל [laughing, teasing]: ...`, `עמרי [mock-solemn]: ...`.
+  A direction describes emotion, attitude or energy only (laughing, teasing, dry, warm,
+  delighted, serious, mock-solemn), never a voice type or another persona (announcer, news
+  anchor, radio ad, narrator, storyteller voice, another age or accent): that made both voices
+  change mid-episode (owner, 11.11.2026). `produce.py` puts the host's voice anchor before every
+  direction and `tts.pace` after it; a line without a direction keeps the host's default style.
+  Use directions where the emotion matters, especially setups and punchlines. Delivery overall:
+  lively, warm and smiling, never gloomy, at a relaxed, unhurried pace with natural pauses (the
+  owner found the 1.11 episode too fast). Never write fast, brisk, rapid, rushing or speeding up
+  in a direction.
+- The whole episode goes to the TTS in one request (`tts.max_words_per_request`): separate
+  requests can come back with audibly different voices. The run log prints each request's
+  length and token usage and warns when a request's audio looks cut off; check it before
+  delivering.
 - Vocal tags inside the text: `<laugh>` 2–4 times per episode where something is genuinely
   funny, `<short pause>` right before a punchline. No other tags.
 - Write numbers, dates, years, percentages and sums in Hebrew words, e.g.

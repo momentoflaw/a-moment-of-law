@@ -4,14 +4,18 @@ Usage: python tools/produce.py episodes/<name> <out_dir> [--mock]
 
 The script file has one turn per line: "<speaker>: <text>" or
 "<speaker> [<delivery style>]: <text>", where <speaker> is a key of "speakers"
-in podcast.json and the optional bracket overrides that speaker's default style
-for this turn only. Inline vocal tags such as <laugh> or <short pause> pass
-through to the model. meta.json may override voices with
+in podcast.json and the optional bracket replaces that speaker's default style
+for this turn only. Every turn's style starts with the speaker's voice anchor
+(speakers.<name>.anchor) and ends with tts.pace, so a direction changes the
+emotion of a line but never the host's voice. Inline vocal tags such as <laugh>
+or <short pause> pass through to the model. meta.json may override voices with
 "voices": {"<speaker>": "<voice name>"}.
 
 Turns are grouped into requests of at most tts.max_words_per_request words
 (never splitting a turn), each request goes to the Interactions API, and the
-WAV parts are joined and mastered to MP3.
+WAV parts are joined and mastered to MP3. Separate requests can come back with
+audibly different voices, so the limit is set to fit a whole episode in one
+request; a request whose audio looks cut off is flagged in the log.
 --mock replaces the API with placeholder audio, for local testing.
 """
 import base64, json, pathlib, re, subprocess, sys, tempfile, time
@@ -64,11 +68,18 @@ def chunk(turns):
 
 
 def turn_style(speaker, style):
-    """The turn's own direction, or the speaker's default style, plus tts.pace,
-    so a per-turn direction never drops the pace instruction."""
-    s = (style or CFG["speakers"][speaker]["style"]).rstrip(". ")
-    pace = TTS.get("pace", "").strip()
-    return f"{s}. {pace}" if pace and pace not in s else s
+    """The style sent with one turn: the speaker's voice anchor, then the turn's
+    own direction (or the speaker's default style when it has none), then tts.pace.
+    The anchor comes first on every turn, so a direction never replaces the host's
+    voice identity (owner, 11.11.2026: both voices changed mid-episode when the
+    directions replaced the default style)."""
+    spk = CFG["speakers"][speaker]
+    body = f"Emotion for this line: {style.strip(' .')}" if style else spk["style"].strip(" .")
+    parts = [spk.get("anchor", "").strip(" ."), body]
+    pace = TTS.get("pace", "").strip(" .")
+    if pace and pace not in body:
+        parts.append(pace)
+    return ". ".join(p for p in parts if p) + "."
 
 
 def request_audio(turns, voices, full=True):
@@ -104,6 +115,9 @@ def request_audio(turns, voices, full=True):
     audio = getattr(interaction, "output_audio", None)
     if not audio or not audio.data:
         raise RuntimeError(f"no audio in response (status={getattr(interaction, 'status', None)})")
+    # token usage and status, to learn how many output tokens a second of audio takes
+    print(f"    status={getattr(interaction, 'status', None)} usage={getattr(interaction, 'usage', None)}",
+          flush=True)
     return base64.b64decode(audio.data)
 
 
@@ -213,8 +227,12 @@ def main():
     for i, c in enumerate(chunks, 1):
         wav = tmp / f"req{i:02d}.wav"
         synth(c, voices, wav, mock)
-        print(f"  request {i}/{len(chunks)}: {sum(words(t) for _, _, t in c)} words -> "
-              f"{duration(wav):.0f}s audio", flush=True)
+        n_words, secs = sum(words(t) for _, _, t in c), duration(wav)
+        print(f"  request {i}/{len(chunks)}: {n_words} words -> {secs:.0f}s audio", flush=True)
+        cap = TTS.get("output_token_limit", 16384) / TTS.get("audio_tokens_per_second", 32)
+        if not mock and (secs < n_words * TTS.get("min_seconds_per_word", 0.45) or secs >= 0.97 * cap):
+            print(f"::warning::request {i}: {secs:.0f}s of audio for {n_words} words; the audio may be "
+                  f"cut off (expected about {n_words * 0.52:.0f}s, assumed output cap {cap:.0f}s)", flush=True)
         wavs.append(wav)
         if not mock and i < len(chunks):
             time.sleep(TTS["pause_seconds"])

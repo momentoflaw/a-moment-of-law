@@ -13,17 +13,22 @@
     "עמרי": {
       "id": "Omri",
       "voice": "Algieba",
+      "anchor": "Omri, always the same voice: a warm, articulate Jerusalem radio host in his early forties, smiling",
       "style": "Warm, articulate radio voice of a Jerusalem law nerd: fluent and precise, in smooth, well-formed sentences; when something legal excites him his voice lights up with childlike enthusiasm. Endearing, a little pedantic, smiling. Lively but unhurried delivery. Natural Israeli Hebrew."
     },
     "מיכל": {
       "id": "Michal",
       "voice": "Leda",
+      "anchor": "Michal, always the same voice: a young Tel Aviv woman in her late twenties, giggly, warm and sharp-witted",
       "style": "Young Tel Aviv woman, giggly, mischievous and cynical, with a sharp business mind. Casual, slangy and warm, at an easy, relaxed pace; cuts to the bottom line, teases her co-host and laughs easily, often mid-sentence. Natural Israeli Hebrew."
     }
   },
   "tts": {
     "model": "gemini-3.8-flash-tts",
-    "max_words_per_request": 520,
+    "max_words_per_request": 920,
+    "output_token_limit": 16384,
+    "audio_tokens_per_second": 32,
+    "min_seconds_per_word": 0.45,
     "pause_seconds": 20,
     "gap_between_requests_seconds": 0.35,
     "mp3_bitrate": "96k",
