@@ -159,12 +159,13 @@ Better overall, and he likes the humour style. To fix:
      finding only what the court decided, with its own caveats. Note minority opinions if any.
 4. **Write `script.txt`** (rules below). Length: the whole episode must fit one TTS request, so
    both voices stay the same throughout (owner, 11.11.2026). `script-tts.txt` may hold at most
-   `tts.max_words_per_request` words as `produce.py` counts them (920; spelled-out numbers add a
-   few percent), so aim for **820–880 spoken words** in `script.txt` (labels excluded), about 8
-   minutes at the relaxed pace of 105–115 words a minute. Shorter and punchier is better than
-   complete. (920 assumes 32 output tokens per second of audio against the model's 16,384-token
-   output cap; the run log prints each request's token usage, so raise it if the real rate is
-   lower.)
+   `tts.max_words_per_request` words as `produce.py` counts them (1,100; spelled-out numbers add a
+   few percent). Aim for **820–880 spoken words** in `script.txt` (labels excluded), about 7½–8
+   minutes at the relaxed pace; shorter and punchier is better than complete, and the target
+   leaves headroom under the cap. (Measured on 11.11.2026: 902 words gave 451 seconds of audio
+   and 11,280 output tokens, i.e. 25 tokens a second, so the 16,384-token output cap is about
+   655 seconds, roughly 1,300 words; 1,100 keeps a margin. The run log prints each request's
+   token usage: adjust `tts.audio_tokens_per_second` and the cap if the rate changes.)
    Before writing, check the show's memory in `continuity.md` (see "Show memory" below): read
    the last five entries, and grep the rest for today's case numbers, parties and topics.
    Also check, with one web search of that day's Hebrew sports news, whether Maccabi Tel Aviv's

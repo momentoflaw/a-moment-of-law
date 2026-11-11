@@ -25,9 +25,9 @@
   },
   "tts": {
     "model": "gemini-3.8-flash-tts",
-    "max_words_per_request": 920,
+    "max_words_per_request": 1100,
     "output_token_limit": 16384,
-    "audio_tokens_per_second": 32,
+    "audio_tokens_per_second": 25,
     "min_seconds_per_word": 0.45,
     "pause_seconds": 20,
     "gap_between_requests_seconds": 0.35,
