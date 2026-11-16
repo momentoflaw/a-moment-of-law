@@ -88,6 +88,12 @@ Better overall, and he likes the humour style. To fix:
   people; it should have spoken to, say, everyone whose service reaches the public through
   someone else's machine, app, franchisee or contractor.
 
+## Owner instruction on who presents (16.11.2026)
+
+- From now on each host presents one decision: one decision is told by Michal and the other by
+  Omri, each in their own distinctive way (see "Who presents" under Hosts). Sometimes Omri goes
+  first and sometimes Michal: vary the order from episode to episode.
+
 ## Producing an episode
 
 0. **Ask first.** The owner's standing rule (2.11.2026): ask him before producing each new episode,
@@ -194,6 +200,8 @@ Better overall, and he likes the humour style. To fix:
      the AI disclaimer. The fake sponsor's name was searched and is not a real business or
      entity. Each of Michal's bottom lines follows from that decision's holding, speaks to a
      broad group within the audience rather than a niche, and carries a light, sophisticated joke.
+   - One decision is presented by Omri and the other by Michal, each in their own way, and the
+     opening host is not the same as in both of the last two episodes.
    - Any Maccabi mention is incidental, inside a line that grows from the conversation, not a
      news item of its own; the AI disclaimer is not introduced as a fixed or standing notice.
    - `script.txt` has 820–880 spoken words and `script-tts.txt` fits `tts.max_words_per_request`
@@ -217,7 +225,8 @@ Better overall, and he likes the humour style. To fix:
 - Shape: cold open with banter, the AI disclaimer and the format line (every day, one procedural
   decision and one from substantive law; never "the two decisions we read today"), a fake
   sponsor line (an invented product, checked not to be a real business), decision 1, a short bridge, decision 2, a quick outro with one takeaway per
-  decision, and the sign-off `זה היה רגע של משפט`, said by Omri as the episode's last line;
+  decision (one decision presented by Omri and one by Michal, in varying order; owner,
+  16.11.2026), and the sign-off `זה היה רגע של משפט`, said by Omri as the episode's last line;
   nothing comes after it (owner, 11.11.2026).
 - AI disclaimer at the start of every episode: the show is written and recorded entirely by AI
   and keeps improving, and if listeners hear something absurd (house example: a contract formed
@@ -284,6 +293,23 @@ recurring segments.
 - Dynamic: Omri brings the why (law as an art), Michal brings the so-what (money and real life).
   Each decision gets at least one Omri enthusiasm spike that Michal deflates, and ends with her
   bottom line.
+- **Who presents** (owner, 16.11.2026). Each episode, one decision is presented by Omri and the
+  other by Michal; the presenter gives the mandatory elements, tells the facts and states the
+  outcome, and the other host reacts, asks and cuts in. Usually give each host the decision that
+  suits them (Omri: doctrine, procedure, a beautiful line; Michal: money, business, consumers,
+  technology), but not always, and it does not have to follow the procedural/substantive split.
+  Vary who goes first: check the last entries in `continuity.md` and do not let the same host
+  open more than two episodes in a row.
+  - When Omri presents: as a storyteller in love with the reasoning. Full sentences, the
+    doctrine and its source, the exact wording; Michal interrupts with cost, risk and plain
+    language.
+  - When Michal presents: her way. She starts from the end (she reads judgments from the
+    operative part backwards), tells it as a deal that went wrong, in short sentences and
+    everyday language, with numbers and "who pays for this"; she may skip the doctrine's name,
+    and then Omri cuts in to supply the term, the source or the nuance, gets excited, and she
+    reins him in. She still states the outcome plainly and gives the holding accurately.
+  - The recurring bits stay: "הפינה של עמרי" once per episode (also inside a decision Michal
+    presents), and "השורה התחתונה של מיכל" at the end of each decision, including her own.
 - Real interaction: quick banter, reactions ("רגע, מה?"), finishing each other's sentences,
   cut-ins, teasing, callbacks to earlier jokes. Storytelling comes in paragraphs (see Script
   rules). Avoid monologues; no turn over about 60 words.
@@ -312,7 +338,8 @@ recurring segments.
 
 Omri and Michal remember what they have covered. `continuity.md` logs every episode: for each
 decision the case number, court, judges, date, main parties, a one-line holding, topic keywords
-and the Nevo link; lines worth calling back; and canon, the facts about the hosts said on air.
+and the Nevo link; lines worth calling back; canon, the facts about the hosts said on air; and who presented each decision and who went
+first (owner, 16.11.2026).
 
 - When today's decision connects to one covered before (the same doctrine, an opposite result,
   the same parties, or a later stage of the same case), the hosts may bring the earlier one up
