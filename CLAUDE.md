@@ -94,6 +94,25 @@ Better overall, and he likes the humour style. To fix:
   Omri, each in their own distinctive way (see "Who presents" under Hosts). Sometimes Omri goes
   first and sometimes Michal: vary the order from episode to episode.
 
+## Owner instruction on titles and descriptions (20.11.2026)
+
+The owner uploads each episode to Spotify by hand, using `meta.json`'s title and description.
+Both must make someone who is deciding whether to listen curious, almost clickbait, with a
+humorous wink if it fits, while still looking serious, as a legal podcast should.
+
+- **Title**: no fixed template. Never fall back on "2–3 words on decision 1, comma, 2–3 words
+  on decision 2". Vary the form from episode to episode: one phrase that covers both decisions
+  through a double meaning ("מה שלא כתוב על האריזה"); a striking fact or figure ("370 מיליון שקל
+  ושותף סמוי אחד"); a question; or a hook from one decision when it is clearly the stronger one.
+  Aim for about 3–8 words. It must be accurate: no claim that a decision does not support, and
+  no allegation presented as a finding.
+- **Description**: short. Open with one or two questions that the episode answers, without
+  giving the outcome away. Then one line per decision: its case number, the main parties, the
+  court in brief, and a phrase on what is at stake. Do not say which host presents which
+  decision. End with `נכתב והוקלט בידי בינה מלאכותית. אינו ייעוץ משפטי.` Short lines
+  separated by newlines are fine. About 60–90 words in all.
+- Check the last few titles in `continuity.md` and do not repeat a form twice in a row.
+
 ## Producing an episode
 
 0. **Ask first.** The owner's standing rule (2.11.2026): ask him before producing each new episode,
@@ -179,8 +198,10 @@ Better overall, and he likes the humour style. To fix:
    Michal below).
 5. **Write `script-tts.txt`**: the same turns, with delivery directions (rules below).
 6. **Write `meta.json`**: `title`, `date`, `publish` (false unless the owner said to publish),
-   `description` (one paragraph, ending with the AI and not-legal-advice disclaimer), and
-   `sources` (title + Nevo link for each decision).
+   `description` (see "Owner instruction on titles and descriptions": curiosity questions,
+   one line per decision with its case number, no host names, ending with the AI and
+   not-legal-advice disclaimer), and `sources` (title + Nevo link for each decision). The
+   delivery message gives the title and description ready to paste into Spotify.
 7. **QA before pushing** (all must pass):
    - Every case number, court, judge, party name and date in the script appears verbatim in the
      full text (allowing for Hebrew spelling of Latin names).
