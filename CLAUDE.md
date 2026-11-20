@@ -117,6 +117,9 @@ humorous wink if it fits, while still looking serious, as a legal podcast should
      the hook (`ודן בשאלה הלא כל כך פשוטה: מי ישלם אותו`); vary the wink from episode to
      episode rather than repeating that phrase.
   4. `נכתב והוקלט בידי בינה מלאכותית. אינו מהווה ייעוץ משפטי.`
+  The model is a shape, not a fixed text (owner, 20.11.2026): keep to it, but vary the wording
+  with synonyms and similar openings and connectors (e.g. `בפרק היום:`, `ובנוסף - `), as long as
+  it stays close to the model, flows, and fits that episode.
   Do not say which host presents which decision. About 70–100 words. Use the exact case type
   from the decision (the owner's draft wrote ע"א for a רע"א; keep רע"א).
   The model (owner, 20.11.2026):
