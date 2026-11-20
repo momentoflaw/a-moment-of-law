@@ -101,8 +101,9 @@ Both must make someone who is deciding whether to listen curious, almost clickba
 humorous wink if it fits, while still looking serious, as a legal podcast should.
 
 - **Title**: no fixed template. Never fall back on "2–3 words on decision 1, comma, 2–3 words
-  on decision 2". Vary the form from episode to episode: one phrase that covers both decisions
-  through a double meaning ("מה שלא כתוב על האריזה"); a striking fact or figure ("370 מיליון שקל
+  on decision 2". Vary the form from episode to episode: one phrase that winks at both decisions,
+  naming something from each (owner's 20.11 title: "מה שלא כתוב על האריזה או בהסכם הבוררות":
+  the packaging is the cream case, the arbitration agreement the heirs' case); a striking fact or figure ("370 מיליון שקל
   ושותף סמוי אחד"); a question; or a hook from one decision when it is clearly the stronger one.
   Aim for about 3–8 words. It must be accurate: no claim that a decision does not support, and
   no allegation presented as a finding.
