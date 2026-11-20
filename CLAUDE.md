@@ -106,11 +106,26 @@ humorous wink if it fits, while still looking serious, as a legal podcast should
   ושותף סמוי אחד"); a question; or a hook from one decision when it is clearly the stronger one.
   Aim for about 3–8 words. It must be accurate: no claim that a decision does not support, and
   no allegation presented as a finding.
-- **Description**: short. Open with one or two questions that the episode answers, without
-  giving the outcome away. Then one line per decision: its case number, the main parties, the
-  court in brief, and a phrase on what is at stake. Do not say which host presents which
-  decision. End with `נכתב והוקלט בידי בינה מלאכותית. אינו ייעוץ משפטי.` Short lines
-  separated by newlines are fine. About 60–90 words in all.
+- **Description**: short, in four lines, following the owner's own rewrite of the 20.11
+  description (below), which is the model:
+  1. `היום בפרק:` and one or two questions that the episode answers.
+  2. The first decision as one flowing sentence, `ההחלטה בעניין` (or `פסק הדין של בית המשפט
+     העליון בעניין`) + case number + main parties + the court in brief in parentheses, then
+     what kind of decision it is (it may name the step, e.g. `לאשר תובענה ייצוגית`) and what
+     it deals with, with concrete, vivid details and a light wink.
+  3. `וגם - ` and the second decision in the same way. Keep the real question open when it is
+     the hook (`ודן בשאלה הלא כל כך פשוטה: מי ישלם אותו`); vary the wink from episode to
+     episode rather than repeating that phrase.
+  4. `נכתב והוקלט בידי בינה מלאכותית. אינו מהווה ייעוץ משפטי.`
+  Do not say which host presents which decision. About 70–100 words. Use the exact case type
+  from the decision (the owner's draft wrote ע"א for a רע"א; keep רע"א).
+  The model (owner, 20.11.2026):
+  ```
+  היום בפרק: האם אריזה יכולה להטעות גם כשכל מילה עליה נכונה? והאם בורר יכול לשלוח את החשבון לכיס של היורשים?
+  ההחלטה בעניין ת"צ 62117-12-22 מן נ' תנובה ויטבתה (מחוזי תל אביב) לאשר תובענה ייצוגית, עוסקת בשמנת 38% "להקצפה", בציור של תות, ובשמנת לבישול שעולה קצת יותר.
+  וגם - פסק הדין של בית המשפט העליון בעניין רע"א 47526-05-26 יורשי עו"ד יעקב וינרוט נ' גרטנר, שדן בפסק בוררות על 37.5 מיליון דולר, ודן בשאלה הלא כל כך פשוטה: מי ישלם אותו.
+  נכתב והוקלט בידי בינה מלאכותית. אינו מהווה ייעוץ משפטי.
+  ```
 - Check the last few titles in `continuity.md` and do not repeat a form twice in a row.
 
 ## Producing an episode
@@ -198,9 +213,9 @@ humorous wink if it fits, while still looking serious, as a legal podcast should
    Michal below).
 5. **Write `script-tts.txt`**: the same turns, with delivery directions (rules below).
 6. **Write `meta.json`**: `title`, `date`, `publish` (false unless the owner said to publish),
-   `description` (see "Owner instruction on titles and descriptions": curiosity questions,
-   one line per decision with its case number, no host names, ending with the AI and
-   not-legal-advice disclaimer), and `sources` (title + Nevo link for each decision). The
+   `description` (see "Owner instruction on titles and descriptions": `היום בפרק:` and
+   curiosity questions, one flowing sentence per decision with its case number, `וגם - ` before
+   the second, no host names, ending with the AI and not-legal-advice disclaimer), and `sources` (title + Nevo link for each decision). The
    delivery message gives the title and description ready to paste into Spotify.
 7. **QA before pushing** (all must pass):
    - Every case number, court, judge, party name and date in the script appears verbatim in the
