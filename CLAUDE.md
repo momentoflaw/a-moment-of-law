@@ -184,6 +184,8 @@ humorous wink if it fits, while still looking serious, as a legal podcast should
        certified class action allowed or dismissed. Not new filings, settlements or withdrawals.
      - +1 consumer law, or +2 instead when it is a Supreme Court consumer judgment.
      - Procedural or evidentiary slot: +2 for a Supreme Court decision.
+   - Never pick a decision on a request to inspect a court file (בקשת עיון בתיק), whatever
+     its story (owner, 26.11.2026, after the 21.11 Future Century episode).
    - Do not pick: interim or case-management decisions (deadlines, amended filings, reports,
      scheduling, "fix it and come back"); approvals of agreed settlements or withdrawals with no
      contested legal question; decisions that turn only on credibility or facts with no lesson.
