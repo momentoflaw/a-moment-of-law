@@ -93,6 +93,10 @@ Better overall, and he likes the humour style. To fix:
 - From now on each host presents one decision: one decision is told by Michal and the other by
   Omri, each in their own distinctive way (see "Who presents" under Hosts). Sometimes Omri goes
   first and sometimes Michal: vary the order from episode to episode.
+- Never announce the arrangement on air (owner, 26.11.2026): no "today I'm opening", "you open
+  this time", "each of us presents one", and no jokes about who goes first or who presents
+  (the 20.11–25.11 openings did this). The hosts simply start; the handover is the bridge.
+  The format line stays: every day, one procedural decision and one from substantive law.
 
 ## Owner instruction on titles and descriptions (20.11.2026)
 
@@ -242,6 +246,7 @@ humorous wink if it fits, while still looking serious, as a legal podcast should
      broad group within the audience rather than a niche, and carries a light, sophisticated joke.
    - One decision is presented by Omri and the other by Michal, each in their own way, and the
      opening host is not the same as in both of the last two episodes.
+   - Nothing in the dialogue mentions who opens, who presents which decision, or the order.
    - Any Maccabi mention is incidental, inside a line that grows from the conversation, not a
      news item of its own; the AI disclaimer is not introduced as a fixed or standing notice.
    - `script.txt` has 820–880 spoken words and `script-tts.txt` fits `tts.max_words_per_request`
